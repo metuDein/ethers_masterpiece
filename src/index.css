@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.radial-black {
+    /*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=181615&c2=010101&gt=r&gd=dcc
+*/
+    background: #181615;
+    background: radial-gradient(at center, #181615, #010101);
+}
+
+
+
+@layer utilities {
+    .section-min-height {
+        min-height: calc(100vh - 68px);
+    }
+
+    .scrollbar-hidden {
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

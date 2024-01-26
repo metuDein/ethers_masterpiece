@@ -1,0 +1,25 @@
+{
+  "short_name": "Ethers Masterpiece",
+  "name": "Discover boundless creativity on Ethers Masterpiece – an exclusive NFT platform where visionary artists tokenize their exceptional works.",
+  "icons": [
+    {
+      "src": "assets/appmainlogo.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "assets/appmainlogo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/appmainlogo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
