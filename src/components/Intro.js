@@ -72,10 +72,10 @@ const Intro = () => {
             <h2 className='text-3xl font-bold text-center w-full dark:text-white bg-black pt-6'>Features</h2>
 
             <section className='bg-black w-full'>
-                <section className='mx-auto max-w-4xl min-h-screen flex md:flex-row gap-4 items-center justify-center'>
+                <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white'> Secure Wallet Integration.</h3>
-                        <p className='dark:text-white'>This feature allows you to securely connect your wallet either Meta Mask and Trust wallet, enabling you to interact with blockchain networks and perform transactions Seamlessly.</p>
+                        <h3 className='text-xl dark:text-white mb-4'> SECURE WALLET INTERGRATION.</h3>
+                        <p className='dark:text-white'>Empower your digital experience by seamlessly integrating our secure connection feature, enabling you to effortlessly link your MetaMask or Trust Wallet. Through this enhanced connection, you gain the ability to interact seamlessly with various blockchain networks, facilitating secure and swift transactions that align with the dynamic capabilities of decentralized technologies.</p>
                     </div>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
                         <img src="assets/cyrptowallet.png" alt="wallet" className='w-72 h-52 rounded-xl' />
@@ -85,25 +85,26 @@ const Intro = () => {
             <hr className='bg-white mx-auto max-w-3xl' />
 
             <section className='bg-black w-full'>
-                <section className='mx-auto max-w-4xl min-h-screen flex md:flex-row gap-4 items-center justify-center'>
+                <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
                         <img src="assets/deal.png" alt="wallet" className='w-52 h-52 rounded-xl' />
                         {/* <FaHandshake className='text-[300px] text-white' /> */}
                     </div>
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white'>STANDBY BUYERS.</h3>
-                        <p className='dark:text-white'>This feature allows you to securely connect your Meta Mask, enabling you to interact with blockchain networks and perform transactions Seamlessly.</p>
+                        <h3 className='text-xl dark:text-white mb-4'>STANDBY BUYERS.</h3>
+                        <p className='dark:text-white'>By showcasing your NFT on EthersMasterpiece, you not only introduce your digital creations to a broad and diverse network of potential buyers but also position them to be discovered and appreciated by a community actively seeking unique and valuable assets. This exposure opens up new horizons for your creations, inviting art enthusiasts, collectors, and investors who are eager to engage with and acquire distinctive pieces within the dynamic and thriving ecosystem of EthersMasterpiece..</p>
                     </div>
 
                 </section>
             </section>
             <hr className='bg-white mx-auto max-w-3xl' />
             <section className='bg-black w-full'>
-                <section className='mx-auto max-w-4xl min-h-screen flex md:flex-row gap-4 items-center justify-center'>
+                <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
 
                     <div className='basis-2/4 p-3 '>
                         <h3 className='text-xl dark:text-white'> 24/7 SUPPORT.</h3>
-                        <p className='dark:text-white'>This feature allows you to securely connect your Meta Mask, enabling you to interact with blockchain networks and perform transactions Seamlessly.</p>
+                        <p className='dark:text-white'>
+                            At EthersMasterpiece, our commitment to your satisfaction and success is unwavering. Recognizing the diverse needs of our users, we have implemented a robust 24/7 support system. This means that our dedicated team is always ready to provide timely and comprehensive assistance, ensuring that you have the support you need, precisely when you need it. Your experience on our platform matters, and our around-the-clock support reflects our dedication to delivering a seamless and positive journey for every user, no matter the time zone or circumstance.</p>
                     </div>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
                         <img src="assets/support.png" alt="wallet" className='w-52 h-52 rounded-xl' />
@@ -114,7 +115,7 @@ const Intro = () => {
             </section>
             <hr className='bg-white mx-auto max-w-3xl' />
             <section className='bg-black w-full'>
-                <section className='mx-auto max-w-4xl min-h-screen flex md:flex-row gap-4 items-center justify-center'>
+                <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
 
 
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
@@ -123,18 +124,19 @@ const Intro = () => {
                     </div>
                     <div className='basis-2/4 p-3 '>
                         <h3 className='text-xl dark:text-white'> LOW TRADE FEES.</h3>
-                        <p className='dark:text-white'>This feature allows you to securely connect your Meta Mask, enabling you to interact with blockchain networks and perform transactions Seamlessly.</p>
+                        <p className='dark:text-white'>In the ethos of EthersMasterpiece, we deeply appreciate the significance of cost efficiency in the dynamic world of buying and selling NFTs. Our commitment to your financial well-being is reflected in our dedication to providing a seamless experience with low gas fees. This means that as you engage in transactions on our platform, you can be confident that the associated costs are kept minimal, allowing you to navigate the exciting realm of NFTs without the burden of exorbitant fees, and ensuring that your financial resources are optimized for your creative endeavors and digital investments.</p>
                     </div>
 
                 </section>
             </section>
             <hr className='bg-white mx-auto max-w-3xl' />
             <section className='bg-black w-full'>
-                <section className='mx-auto max-w-4xl min-h-screen flex md:flex-row gap-4 items-center justify-center'>
+                <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
 
                     <div className='basis-2/4 p-3 '>
                         <h3 className='text-xl dark:text-white'> PRIORITIZES NEW ASSETS.</h3>
-                        <p className='dark:text-white'>This feature allows you to securely connect your Meta Mask, enabling you to interact with blockchain networks and perform transactions Seamlessly.</p>
+                        <p className='dark:text-white'>
+                            At Ethers Masterpiece, our commitment lies in fostering a vibrant and inclusive ecosystem for creators within the NFT space. We hold a firm belief in providing unwavering support and promotion to burgeoning artists who bring fresh perspectives and creativity to our platform. By prioritizing the visibility and exposure of recently uploaded assets, we aim to cultivate an environment where the work of new and emerging talents shines brightly, capturing the attention and admiration they rightfully deserve. We are dedicated to creating a dynamic space that not only values the established but also actively encourages the growth and recognition of artists who are just embarking on their journey in the NFT realm.</p>
                     </div>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
                         <img src="assets/priortize.png" alt="wallet" className='w-52 h-52 rounded-xl' />
