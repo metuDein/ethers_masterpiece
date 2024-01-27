@@ -234,7 +234,7 @@ const Intro = () => {
             <h2 className='text-3xl font-bold text-center w-full text-white bg-black py-6'>Testimonials and Reviews</h2>
             <section className='bg-black w-full'>
                 <section className='mx-auto max-w-4xl min-h-screen py-7'>
-                    <article className='w-full p-6 bg-slate-800 rounded-2xl my-2'>
+                    {/* <article className='w-full p-6 bg-slate-800 rounded-2xl my-2'>
 
 
                     </article>
@@ -245,11 +245,12 @@ const Intro = () => {
                     <article className='w-full p-6 bg-slate-800 rounded-2xl my-2'>
 
 
-                    </article>
+                    </article> */}
                     <div className='flex flex-col items-center mt-4'>
                         <h3 className='text-2xl font-bold text-white mb-5 text-center'>Help keep the Streak with your review</h3>
                         <Link
-                            to={''}
+                            to={'https://www.trustpilot.com/evaluate/ethersmasterpiece.com?stars=5'}
+                            target='_blank'
                         >
                             <img className='w-[350px] h-[200px]' src="assets/trustp.png" alt="trustpilot" />
                         </Link>
