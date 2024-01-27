@@ -30,7 +30,7 @@ const Intro = () => {
     }
 
     return (
-        <main className='bg-black/60 w-full min-h-screen'>
+        <main className='bg-black/65 w-full min-h-screen z-[-2]'>
             <section className='w-full min-h-[90vh]'>
                 <video src="assets/appbackground.mp4" loop autoPlay muted playsInline className='w-full h-full absolute right-0 bottom-0 z-[-1] object-fill'>
 
@@ -38,14 +38,14 @@ const Intro = () => {
 
                 <section className='max-w-4xl mx-auto w-full p-3 flex items-center justify-center min-h-[90vh]'>
                     <div>
-                        <h2 className='text-3xl md:text-5xl font-bold text-white text-left'>
+                        <h2 className='text-3xl md:text-5xl font-bold text-white text-center md:text-left'>
                             Ethers MasterPieces easily buy and sell you assets
                         </h2>
-                        <h3 style={{ lineHeight: '20px', textAlign: 'left' }} className='mt-6 text-white text-xl text-[14px] md:text-[16px] text-left'>
-                            Discover boundless creativity on Ether Masterpiece – an exclusive NFT platform where visionary artists tokenize their exceptional works. Immerse yourself in a world of digital art, where every masterpiece is uniquely crafted on the Ethereum blockchain, creating a decentralized gallery of unparalleled beauty and innovation.
+                        <h3 style={{ lineHeight: '20px' }} className='mt-6 text-white text-[14px] md:text-[16px] text-center md:text-left'>
+                            Discover boundless creativity on Ether Masterpiece an exclusive NFT platform where visionary artists tokenize their exceptional works. Immerse yourself in a world of digital art, where every masterpiece is uniquely crafted on the Ethereum blockchain, creating a decentralized gallery of unparalleled beauty and innovation.
                         </h3>
 
-                        <Link className='bg-black w-52 p-2 rounded-2xl text-center block text-white text-2xl mt-7'> Get Started </Link>
+                        <Link className='bg-black w-52 p-2 rounded-2xl md:mx-1 mx-auto text-center block text-white text-2xl mt-7'> Get Started </Link>
                     </div>
                 </section>
 
@@ -59,7 +59,7 @@ const Intro = () => {
                 <section className='mx-auto max-w-4xl min-h-screen radial-black'>
                     <div className='w-full p-4 flex flex-wrap gap-8 items-center justify-center relative'>
                         <div className='bg-black/60 absolute top-0 left-0 w-full h-full z-10 flex items-center justify-center'>
-                            <p className='text-2xl font-medium text-white p-3 md:px-16'>
+                            <p className='text-2xl font-normal md:font-medium text-white text-center p-3 md:px-16 '>
                                 Dive into a vast array of digital treasures within our platform, where we provide an extensive selection of assets, ranging from exclusive NFTs to captivating digital art and a plethora of other unique and collectible creations.
                             </p>
                         </div>
@@ -69,6 +69,7 @@ const Intro = () => {
 
                 </section>
             </section>
+            <hr className='bg-black/60 mx-auto max-w-3xl' />
             <h2 className='text-3xl font-bold text-center w-full text-white bg-black pt-6'>Features</h2>
 
             <section className='bg-black w-full'>
