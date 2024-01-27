@@ -70,7 +70,7 @@ const CollectionCard = (item) => {
                             no assets
                         </p>}
                         {itemAssets.length && <p className='inline text-center text-black dark:text-white font-bold'>
-                            Estimate: {calculateTotalPrice(itemAssets)} {item?.item?.network === 'Binance Smart chain' ? 'BNB' : 'ETH'} <br />${Math.floor(totalEth)}<span className='text-gray-200 text-[14px] font-normal'> USD </span>
+                            Estimate: {Number(calculateTotalPrice(itemAssets).toFixed(2))} {item?.item?.network === 'Binance Smart chain' ? 'BNB' : 'ETH'} <br />${Math.floor(totalEth)}<span className='text-gray-200 text-[14px] font-normal'> USD </span>
                         </p>}
                     </div>
                 </div>

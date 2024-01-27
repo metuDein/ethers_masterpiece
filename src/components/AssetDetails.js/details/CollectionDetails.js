@@ -150,7 +150,7 @@ const CollectionDetails = () => {
                         <div className='p-4 basis-4/5 flex items-center justify-between  bg-gray-900'>
                             <div>
                                 <h2 className='text-3xl sm:text-4xl font-medium text-white'>
-                                    {calculateTotalPrice(collAssets)} ETH / <span className='text-gray-500'>0.00 ETH</span>
+                                    {Number(calculateTotalPrice(collAssets).toFixed(2))} ETH / <span className='text-gray-500'>0.00 ETH</span>
                                 </h2>
                                 <p className=' text-gray-500'>
                                     Total value / Total Earned
