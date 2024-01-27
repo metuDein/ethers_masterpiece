@@ -39,7 +39,7 @@ const Intro = () => {
                 <section className='max-w-4xl mx-auto w-full p-3 flex items-center justify-center min-h-[90vh]'>
                     <div>
                         <h2 className='text-3xl md:text-5xl font-bold text-white text-center md:text-left'>
-                            Ethers MasterPieces easily buy and sell you assets
+                            Ethers MasterPiece easily buy and sell you assets
                         </h2>
                         <h3 style={{ lineHeight: '20px' }} className='mt-6 text-white text-[14px] md:text-[16px] text-center md:text-left'>
                             Discover boundless creativity on Ether Masterpiece an exclusive NFT platform where visionary artists tokenize their exceptional works. Immerse yourself in a world of digital art, where every masterpiece is uniquely crafted on the Ethereum blockchain, creating a decentralized gallery of unparalleled beauty and innovation.
@@ -285,10 +285,8 @@ const Intro = () => {
                         className='bg-black w-52 p-2 rounded-2xl text-center block text-white text-2xl mt-7'>
                         Get Started
                     </Link>
-
                 </section>
             </section>
-
         </main>
     )
 }

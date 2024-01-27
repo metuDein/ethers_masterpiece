@@ -101,8 +101,6 @@ const UserCreateAsset = () => {
                         id="price"
                         placeholder="set a price for this asset"
                         className="w-full p-3 text-xl text-black dark:text-white rounded-xl focus:outline-none bg-transparent border border-solid placeholder:text-[15px]"
-                        min={2}
-                        max={15}
                         required
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}

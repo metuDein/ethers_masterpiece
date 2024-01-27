@@ -62,14 +62,14 @@ const CollectionCard = (item) => {
                         <div className='w-[100px] h-[100px] rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto'>
                             {item?.item?.banner && <img style={{}} className='w-full h-full rounded-full' src={item?.item?.banner || "assets/appmainlogo.png"} alt="collection banner" />}
                         </div>
-                        <h2 className='text-black dark:text-white text-xl font-bold text-center'>{item?.item?.name}</h2>
+                        <h2 className='text-black dark:text-white text-xl font-bold text-center text-nowrap'>{(item?.item?.name)?.substring(0, 17)}</h2>
                         <p className='text-gray-500 dark:text-gray-500 text-center'>@{item?.item?.owner}</p>
                     </div>
                     <div className='flex absolute bottom-0 left-0 p-3 w-full items-center justify-center'>
-                        {!itemAssets && <p className='inline text-center text-black dark:text-white font-bold'>
+                        {!itemAssets?.length && <p className='inline text-center text-black dark:text-white font-bold'>
                             no assets
                         </p>}
-                        {itemAssets?.length && <p className='inline text-center text-black dark:text-white font-bold'>
+                        {itemAssets.length && <p className='inline text-center text-black dark:text-white font-bold'>
                             Estimate: {calculateTotalPrice(itemAssets)} {item?.item?.network === 'Binance Smart chain' ? 'BNB' : 'ETH'} <br />${Math.floor(totalEth)}<span className='text-gray-200 text-[14px] font-normal'> USD </span>
                         </p>}
                     </div>

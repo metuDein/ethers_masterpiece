@@ -70,7 +70,7 @@ const UserProfile = () => {
                         {user?.image && <img className='w-full h-[200px] object-cover rounded-full' src={user?.image || ''} alt="profile" />}
                         {!user?.image &&
                             <div className='flex items-center justify-center w-[200px] h-[200px] bg-black rounded-full'>
-                                <p className='text-[50px]'>
+                                <p className='text-[50px] text-white'>
                                     {(user?.name)?.substring(0, 1).toUpperCase()}
                                 </p>
                             </div>

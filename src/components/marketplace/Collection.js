@@ -58,11 +58,11 @@ const Collection = () => {
                 return (<section className='mx-auto max-w-4xl my-12 min-h-52'>
                     <div className='w-full rounded-2xl flex items-center justify-center overflow-hidden mb-12'>
                         <div className='p-4 flex items-center justify-center basis-1/5 bg-gray-800 flex-1'>
-                            <IoLogoUsd className='text-3xl sm:text-4xl font-light' />
+                            <IoLogoUsd className='text-3xl sm:text-4xl font-light text-white' />
                         </div>
                         <div className='p-4 basis-4/5 flex items-center justify-between  bg-gray-900'>
                             <div>
-                                <h2 className='text-3xl sm:text-4xl font-medium'>
+                                <h2 className='text-3xl sm:text-4xl font-medium text-white'>
                                     {calculateTotalPrice(collAssets)} ETH / <span className='text-gray-500'>0.00 ETH</span>
                                 </h2>
                                 <p className=' text-gray-500'>
@@ -74,11 +74,11 @@ const Collection = () => {
                     </div>
                     <div className='w-full rounded-2xl flex items-center justify-center overflow-hidden '>
                         <div className='p-4 flex items-center justify-center basis-1/5 bg-gray-800 flex-1 h-full'>
-                            <IoIosPulse className='text-3xl sm:text-4xl font-light' />
+                            <IoIosPulse className='text-3xl sm:text-4xl font-light text-white' />
                         </div>
                         <div className='p-4 basis-4/5 flex items-center justify-between  bg-gray-900'>
                             <div>
-                                <h2 className='text-3xl sm:text-4xl font-medium'>
+                                <h2 className='text-3xl sm:text-4xl font-medium text-white'>
                                     {collAssets?.length} Assets / <span className='text-gray-500'> {calculateTotalSupply(collAssets)} Minted </span>
                                 </h2>
                                 <p className=' text-gray-500'>

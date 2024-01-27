@@ -87,13 +87,13 @@ const ProfileCollectionCard = (item, handleDelete) => {
                             <div className='w-[100px] h-[100px] rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto'>
                                 {item?.item?.banner && <img style={{}} className='w-full h-full rounded-full' src={item?.item?.banner || "assets/appmainlogo.png"} alt="collection banner" />}
                             </div>
-                            <h2 className='text-black dark:text-white text-xl font-bold text-center'>{item?.item?.name}</h2>
+                            <h2 className='text-black dark:text-white text-xl font-bold text-center text-nowrap'>{(item?.item?.name).substring(0, 17)}</h2>
                             <p className='text-black dark:text-white text-center'>@{item?.item?.owner}</p>
                         </div>
                         <div className='flex absolute bottom-0 left-0 p-3 w-full items-center justify-center'>
                             {
                                 itemAssets?.length
-                                    ? (<p>  {itemAssets?.length} Asset(s)</p>)
+                                    ? (<p className='font-bold'>  {itemAssets?.length} Asset(s)</p>)
                                     : (<h2 className='text-xl font-bold dark:text-white'> No assets yet. </h2>)
                             }
                         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const TermsAndConditions = () => {
     return (
-        <main className='bg-white dark:bg-black w-full min-h-screen p-6 text-black dark:text-white'>
+        <main className='bg-white dark:bg-black/90 w-full min-h-screen p-6 text-black dark:text-white'>
             <section className='max-w-4xl mx-auto'>
                 <h1 className='text-4xl font-bold text-white text-center md:text-left mb-5 md:mt-7'>
                     EthersMasterpiece - Terms and Conditions

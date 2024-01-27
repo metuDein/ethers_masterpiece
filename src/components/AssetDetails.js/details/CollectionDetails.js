@@ -145,11 +145,11 @@ const CollectionDetails = () => {
                 return (<section className='mx-auto max-w-4xl my-12 min-h-52'>
                     <div className='w-full rounded-2xl flex items-center justify-center overflow-hidden mb-12'>
                         <div className='p-4 flex items-center justify-center basis-1/5 bg-gray-800 flex-1'>
-                            <IoLogoUsd className='text-3xl sm:text-4xl font-light' />
+                            <IoLogoUsd className='text-3xl sm:text-4xl font-light text-white' />
                         </div>
                         <div className='p-4 basis-4/5 flex items-center justify-between  bg-gray-900'>
                             <div>
-                                <h2 className='text-3xl sm:text-4xl font-medium'>
+                                <h2 className='text-3xl sm:text-4xl font-medium text-white'>
                                     {calculateTotalPrice(collAssets)} ETH / <span className='text-gray-500'>0.00 ETH</span>
                                 </h2>
                                 <p className=' text-gray-500'>
@@ -161,11 +161,11 @@ const CollectionDetails = () => {
                     </div>
                     <div className='w-full rounded-2xl flex items-center justify-center overflow-hidden '>
                         <div className='p-4 flex items-center justify-center basis-1/5 bg-gray-800 flex-1 h-full'>
-                            <IoIosPulse className='text-3xl sm:text-4xl font-light' />
+                            <IoIosPulse className='text-3xl sm:text-4xl font-light text-white' />
                         </div>
                         <div className='p-4 basis-4/5 flex items-center justify-between  bg-gray-900'>
                             <div>
-                                <h2 className='text-3xl sm:text-4xl font-medium'>
+                                <h2 className='text-3xl sm:text-4xl font-medium text-white'>
                                     {collAssets?.length} Assets / <span className='text-gray-500'> {calculateTotalSupply(collAssets)} Minted </span>
                                 </h2>
                                 <p className=' text-gray-500'>
@@ -188,7 +188,9 @@ const CollectionDetails = () => {
                                 ? (collAssets.map((item, i) => <ProfileAssetCard item={item} key={i} />))
                                 : (<article className='flex flex-col'>
                                     <h3 className='text-xl font-bold text-center my-2'> You have no asset </h3>
-                                    <Link className='text-center p-3 w-52 bg-black text-white h-[45px] rounded'>Create</Link>
+                                    <Link
+                                        to={'/create-asset'}
+                                        className='text-center p-3 w-52 bg-black text-white h-[45px] rounded'>Create</Link>
                                 </article>)
                         }
                     </section>
@@ -214,13 +216,13 @@ const CollectionDetails = () => {
                         <img className='w-[140px] h-[180px] rounded-xl mb-4' src={collection?.banner || `assets/testimg.png`} alt="collection" />
                         <div>
                             <h2 className='font-bold text-3xl'>{collection?.name}</h2>
-                            <p className='text-gray-400'> @{(collection?.owner).substring(0, 9)}... <span className='float-right ml-4 text-white'>{collection?.network} {collection?.network === 'Ethereum MainNet' ? (<FaEthereum className='inline text-black' />) : (<SiBinance className='inline text-yellow-500' />)} </span></p>
+                            <p className='text-gray-600 dark:text-gray-400'> @{(collection?.owner).substring(0, 9)}... <span className='float-right ml-4 text-white'>{collection?.network} {collection?.network === 'Ethereum MainNet' ? (<FaEthereum className='inline text-black' />) : (<SiBinance className='inline text-yellow-500' />)} </span></p>
                         </div>
                     </div>
-                    {!collection?.gasFee && <div className='bg-red-300 w-[200px] md:w-[400px] p-3 self-end rounded-xl absolute top-1 right-1'>
-                        <p className='text-red-800 font-bold'>
-                            <span className='font-bold'> <AiFillWarning className='inline text-red-800 ' /> Warning! <br /> </span>
-                            the gas fees for this collection have not been paid
+                    {!collection?.gasFee && <div className='bg-white w-[200px] md:w-[400px] p-3 self-end rounded-xl absolute top-1 right-1'>
+                        <p className='text-black '>
+                            <span className='font-bold text-red-800'> <AiFillWarning className='inline text-red-800 ' /> Warning! <br /> </span>
+                            The gas fees for this collection have not been paid
                             <br />
                             <span className='font-bold'>   Estimated at: <FaEthereum className='inline mb-1' /> {collection?.gasfeeamount} ETH / {Math.floor(collection?.gasfeeamount * ethValue)} USD </span>
                         </p>
@@ -235,7 +237,7 @@ const CollectionDetails = () => {
                 </div>
                 <div className='float-right mt-6 sm:mt-3'>
 
-                    <Link to={`/edit-collection/${collection?._id}`} className='p-3 text-center bg-black rounded-2xl text-white mr-3'>Edit </Link>
+                    <Link to={`/edit-collection/${collection?._id}`} className='p-2 px-4 text-center bg-black rounded-2xl text-white mr-3'>Edit </Link>
                     <Link to={'/create-asset'} className='p-2 bg-black rounded-2xl text-white mr-3'>Add New Asset</Link>
                     {!isLoading && <button
                         onClick={() => deleteCollection(collection?._id)}
@@ -247,11 +249,11 @@ const CollectionDetails = () => {
             <section className="mx-auto max-w-4xl  my-12 ">
                 <div className='w-full bg-gray-600 flex flex-row items-center justify-between'>
                     <button
-                        className={`basis-2/4 p-2  font-medium ${tab === 'stats' ? 'border-b-2 border-black dark:border-white' : ''}`}
+                        className={`basis-2/4 p-2 text-white font-medium ${tab === 'stats' ? 'border-b-2 border-black dark:border-white' : ''}`}
                         onClick={() => setTab('stats')}
                     > Stats  </button>
                     <button
-                        className={`basis-2/4 p-2 font-medium ${tab === 'assets' ? 'border-b-2 border-black dark:border-white' : ''}`}
+                        className={`basis-2/4 p-2 text-white font-medium ${tab === 'assets' ? 'border-b-2 border-black dark:border-white' : ''}`}
                         onClick={() => setTab('assets')}
 
                     > Assets ({collAssets?.length}) </button>

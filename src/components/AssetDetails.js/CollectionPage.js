@@ -6,7 +6,7 @@ const CollectionPage = () => {
     const { allCollections } = useDataContext()
 
     return (
-        <main className='bg-white dark:bg-black w-full min-h-screen p-6'>
+        <main className='bg-white dark:bg-black/90 w-full min-h-screen p-6'>
             <section className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2  md:grid-cols-4 gap-4 min-h-screen my-12">
                 {
                     allCollections?.length
