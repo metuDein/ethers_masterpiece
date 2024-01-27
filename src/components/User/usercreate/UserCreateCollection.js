@@ -230,7 +230,7 @@ const UserCreateCollection = () => {
                                 Continue
                             </button>
                             <article
-                                onClick={payTheCollectionfeeMetamask}
+                                onClick={() => navigate(-1)}
                                 className=
                                 "bg-gray-400  text-black text-[16px] text-center w-full font-medium rounded-full p-2 hover:bg-gray-400 dark:hover:bg-gray-300 transition duration-[300ms] active:bg-gray-600 mb-6 cursor-pointer">
                                 Cancel

@@ -1,5 +1,6 @@
 {
   "name": "ethers_masterpiece",
+  "homepage": "https://ethersmasterpiece.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

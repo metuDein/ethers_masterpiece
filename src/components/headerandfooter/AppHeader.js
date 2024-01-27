@@ -345,7 +345,7 @@ const AppHeader = () => {
                                         onClick={() => setMsgTab(prev => !prev)}
                                         className='transition duration-300 hover:bg-gray-300 p-2 pt-1 rounded border-b border-solid'>
                                         <Link >
-                                            <h3 className='text-[15px] font-medium'>NO NOTIFICATIONS</h3>
+                                            <h2 className='text-[15px] font-medium'>NO NOTIFICATIONS</h2>
                                             <p style={{ lineHeight: '10px' }} className='hidden text-[13px] text-gray-500'> no one can help you here get out</p>
                                         </Link>
                                     </li>

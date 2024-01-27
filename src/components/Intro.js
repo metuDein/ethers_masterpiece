@@ -30,7 +30,7 @@ const Intro = () => {
     }
 
     return (
-        <main className='bg-white dark:bg-black/60 w-full min-h-screen'>
+        <main className='bg-black/60 w-full min-h-screen'>
             <section className='w-full min-h-[90vh]'>
                 <video src="assets/appbackground.mp4" loop autoPlay muted playsInline className='w-full h-full absolute right-0 bottom-0 z-[-1] object-fill'>
 
@@ -38,10 +38,10 @@ const Intro = () => {
 
                 <section className='max-w-4xl mx-auto w-full p-3 flex items-center justify-center min-h-[90vh]'>
                     <div>
-                        <h2 className='text-5xl font-bold dark:text-white text-left'>
+                        <h2 className='text-3xl md:text-5xl font-bold text-white text-left'>
                             Ethers MasterPieces easily buy and sell you assets
                         </h2>
-                        <h3 className='mt-6 dark:text-white text-xl'>
+                        <h3 style={{ lineHeight: '20px', textAlign: 'left' }} className='mt-6 text-white text-xl text-[14px] md:text-[16px] text-left'>
                             Discover boundless creativity on Ether Masterpiece – an exclusive NFT platform where visionary artists tokenize their exceptional works. Immerse yourself in a world of digital art, where every masterpiece is uniquely crafted on the Ethereum blockchain, creating a decentralized gallery of unparalleled beauty and innovation.
                         </h3>
 
@@ -52,14 +52,14 @@ const Intro = () => {
 
             </section>
             <hr className='bg-white mx-auto max-w-3xl' />
-            <h2 className='text-3xl font-bold text-center w-full dark:text-white bg-black py-6'>Discover Unique Assets</h2>
+            <h2 className='text-3xl font-bold text-center w-full text-white bg-black py-6'>Discover Unique Assets</h2>
 
             <section className='bg-black w-full'>
 
                 <section className='mx-auto max-w-4xl min-h-screen radial-black'>
                     <div className='w-full p-4 flex flex-wrap gap-8 items-center justify-center relative'>
                         <div className='bg-black/60 absolute top-0 left-0 w-full h-full z-10 flex items-center justify-center'>
-                            <p className='text-2xl font-medium dark:text-white px-16'>
+                            <p className='text-2xl font-medium text-white p-3 md:px-16'>
                                 Dive into a vast array of digital treasures within our platform, where we provide an extensive selection of assets, ranging from exclusive NFTs to captivating digital art and a plethora of other unique and collectible creations.
                             </p>
                         </div>
@@ -69,13 +69,13 @@ const Intro = () => {
 
                 </section>
             </section>
-            <h2 className='text-3xl font-bold text-center w-full dark:text-white bg-black pt-6'>Features</h2>
+            <h2 className='text-3xl font-bold text-center w-full text-white bg-black pt-6'>Features</h2>
 
             <section className='bg-black w-full'>
                 <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white mb-4'> SECURE WALLET INTERGRATION.</h3>
-                        <p className='dark:text-white'>Empower your digital experience by seamlessly integrating our secure connection feature, enabling you to effortlessly link your MetaMask or Trust Wallet. Through this enhanced connection, you gain the ability to interact seamlessly with various blockchain networks, facilitating secure and swift transactions that align with the dynamic capabilities of decentralized technologies.</p>
+                        <h3 className='text-xl text-white mb-4 text-center md:text-left'> SECURE WALLET INTERGRATION.</h3>
+                        <p className='text-white text-center md:text-left'>Empower your digital experience by seamlessly integrating our secure connection feature, enabling you to effortlessly link your MetaMask or Trust Wallet. Through this enhanced connection, you gain the ability to interact seamlessly with various blockchain networks, facilitating secure and swift transactions that align with the dynamic capabilities of decentralized technologies.</p>
                     </div>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
                         <img src="assets/cyrptowallet.png" alt="wallet" className='w-72 h-52 rounded-xl' />
@@ -91,8 +91,8 @@ const Intro = () => {
                         {/* <FaHandshake className='text-[300px] text-white' /> */}
                     </div>
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white mb-4'>STANDBY BUYERS.</h3>
-                        <p className='dark:text-white'>By showcasing your NFT on EthersMasterpiece, you not only introduce your digital creations to a broad and diverse network of potential buyers but also position them to be discovered and appreciated by a community actively seeking unique and valuable assets. This exposure opens up new horizons for your creations, inviting art enthusiasts, collectors, and investors who are eager to engage with and acquire distinctive pieces within the dynamic and thriving ecosystem of EthersMasterpiece..</p>
+                        <h3 className='text-xl text-white mb-4 text-center md:text-left'>STANDBY BUYERS.</h3>
+                        <p className='text-white text-center md:text-left'>By showcasing your NFT on EthersMasterpiece, you not only introduce your digital creations to a broad and diverse network of potential buyers but also position them to be discovered and appreciated by a community actively seeking unique and valuable assets. This exposure opens up new horizons for your creations, inviting art enthusiasts, collectors, and investors who are eager to engage with and acquire distinctive pieces within the dynamic and thriving ecosystem of EthersMasterpiece..</p>
                     </div>
 
                 </section>
@@ -102,8 +102,8 @@ const Intro = () => {
                 <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
 
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white'> 24/7 SUPPORT.</h3>
-                        <p className='dark:text-white'>
+                        <h3 className='text-xl text-white text-center md:text-left'> 24/7 SUPPORT.</h3>
+                        <p className='text-white text-center md:text-left'>
                             At EthersMasterpiece, our commitment to your satisfaction and success is unwavering. Recognizing the diverse needs of our users, we have implemented a robust 24/7 support system. This means that our dedicated team is always ready to provide timely and comprehensive assistance, ensuring that you have the support you need, precisely when you need it. Your experience on our platform matters, and our around-the-clock support reflects our dedication to delivering a seamless and positive journey for every user, no matter the time zone or circumstance.</p>
                     </div>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
@@ -123,8 +123,8 @@ const Intro = () => {
                         <img src="assets/fees.png" alt="wallet" className='w-52 h-52 rounded-xl' />
                     </div>
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white'> LOW TRADE FEES.</h3>
-                        <p className='dark:text-white'>In the ethos of EthersMasterpiece, we deeply appreciate the significance of cost efficiency in the dynamic world of buying and selling NFTs. Our commitment to your financial well-being is reflected in our dedication to providing a seamless experience with low gas fees. This means that as you engage in transactions on our platform, you can be confident that the associated costs are kept minimal, allowing you to navigate the exciting realm of NFTs without the burden of exorbitant fees, and ensuring that your financial resources are optimized for your creative endeavors and digital investments.</p>
+                        <h3 className='text-xl text-white text-center md:text-left'> LOW TRADE FEES.</h3>
+                        <p className='text-white text-center md:text-left'>In the ethos of EthersMasterpiece, we deeply appreciate the significance of cost efficiency in the dynamic world of buying and selling NFTs. Our commitment to your financial well-being is reflected in our dedication to providing a seamless experience with low gas fees. This means that as you engage in transactions on our platform, you can be confident that the associated costs are kept minimal, allowing you to navigate the exciting realm of NFTs without the burden of exorbitant fees, and ensuring that your financial resources are optimized for your creative endeavors and digital investments.</p>
                     </div>
 
                 </section>
@@ -134,8 +134,8 @@ const Intro = () => {
                 <section className='mx-auto max-w-4xl min-h-screen flex flex-col md:flex-row gap-4 items-center justify-center'>
 
                     <div className='basis-2/4 p-3 '>
-                        <h3 className='text-xl dark:text-white'> PRIORITIZES NEW ASSETS.</h3>
-                        <p className='dark:text-white'>
+                        <h3 className='text-xl text-white text-center md:text-left'> PRIORITIZES NEW ASSETS.</h3>
+                        <p className='text-white text-center md:text-left'>
                             At Ethers Masterpiece, our commitment lies in fostering a vibrant and inclusive ecosystem for creators within the NFT space. We hold a firm belief in providing unwavering support and promotion to burgeoning artists who bring fresh perspectives and creativity to our platform. By prioritizing the visibility and exposure of recently uploaded assets, we aim to cultivate an environment where the work of new and emerging talents shines brightly, capturing the attention and admiration they rightfully deserve. We are dedicated to creating a dynamic space that not only values the established but also actively encourages the growth and recognition of artists who are just embarking on their journey in the NFT realm.</p>
                     </div>
                     <div className='basis-2/4 p-3 flex items-center justify-center'>
@@ -148,7 +148,7 @@ const Intro = () => {
             </section>
 
             <hr className='bg-white mx-auto max-w-3xl' />
-            <h2 className='text-3xl font-bold text-center w-full dark:text-white bg-black py-6'>Get Access to a Range of Tools</h2>
+            <h2 className='text-3xl font-bold text-center w-full text-white bg-black py-6'>Get Access to a Range of Tools</h2>
 
 
             <section className='bg-black w-full'>
@@ -230,7 +230,7 @@ const Intro = () => {
                 </section>
             </section>
 
-            <h2 className='text-3xl font-bold text-center w-full dark:text-white bg-black py-6'>Testimonials and Reviews</h2>
+            <h2 className='text-3xl font-bold text-center w-full text-white bg-black py-6'>Testimonials and Reviews</h2>
             <section className='bg-black w-full'>
                 <section className='mx-auto max-w-4xl min-h-screen py-7'>
                     <article className='w-full p-6 bg-slate-800 rounded-2xl my-2'>
@@ -246,7 +246,7 @@ const Intro = () => {
 
                     </article>
                     <div className='flex flex-col items-center mt-4'>
-                        <h4 className='text-2xl font-bold dark:text-white mb-5'>Help keep the Streak with your review</h4>
+                        <h3 className='text-2xl font-bold text-white mb-5 text-center'>Help keep the Streak with your review</h3>
                         <Link
                             to={''}
                         >
@@ -256,27 +256,27 @@ const Intro = () => {
                 </section>
             </section>
 
-            <h2 className='text-3xl font-bold text-center w-full dark:text-white bg-black py-6'>Trusted Partners</h2>
+            <h2 className='text-3xl font-bold text-center w-full text-white bg-black py-6'>Trusted Partners</h2>
             <section className='bg-black/95 w-full'>
                 <section className='mx-auto max-w-4xl min-h-[50vh] py-7'>
-                    <div className='w-full flex gap-5 space-x-6 items-center justify-center'>
+                    <div className='w-full flex flex-col md:flex-row gap-5 space-x-6 items-center justify-center'>
                         <div>
                             <img className='w-[200px] h-[200px] mx-auto' src="assets/metamasklogo.png" alt="metamask wallet" />
-                            <h3 className='text-center text-4xl dark:text-white font-bold'>Metamask Wallet</h3>
+                            <h3 className='text-center text-4xl text-white font-bold'>Metamask Wallet</h3>
                         </div>
                         <div>
                             <img src="assets/trustlogo.png" className='mx-auto w-[200px] h-[200px]' alt="trust wallet" />
-                            <h3 className='text-center text-4xl dark:text-white font-bold'>Trust Wallet</h3>
+                            <h3 className='text-center text-4xl text-white font-bold'>Trust Wallet</h3>
                         </div>
                     </div>
                 </section>
             </section>
             <section className="w-full   bg-gradient-to-r from-violet-500 to-fuchsia-500">
                 <section className='mx-auto max-w-4xl min-h-[40vh] py-7 flex flex-col items-center justify-center'>
-                    <h2 className='text-4xl text-white font-bold'>
+                    <h2 className=' text-3xl md:text-4xl text-white font-bold text-center'>
                         Begin your NFT Journey with Ethers Masterpiece.
                     </h2>
-                    <p>
+                    <p className='text-center'>
                         bringing together a diverse array of artistic expressions from creators worldwide.
                     </p>
                     <Link
