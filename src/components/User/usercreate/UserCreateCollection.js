@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faImage, faSpinner, fas } from "@fortawesome/free-solid-svg-icons"
-import { Fragment, useState, } from 'react'
+import { faImage, faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { Fragment, useEffect, useState, } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { SiBinance } from "react-icons/si";
@@ -10,8 +10,7 @@ import { Link, useNavigate } from "react-router-dom"
 import useDataContext from "../../../hooks/useDataContext"
 import axios from "../../../api/axios"
 import Web3 from "web3"
-// import { ethers } from "ethers"
-import { ethers } from "ethers"
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -29,7 +28,6 @@ const UserCreateCollection = () => {
     const [networkId, setNetworkId] = useState('')
     const [txResult, setTxResult] = useState(false)
     const [feesTab, setFeesTab] = useState(false)
-    // const 
 
     const navigate = useNavigate()
 
@@ -44,6 +42,41 @@ const UserCreateCollection = () => {
 
     }
 
+    useEffect(() => {
+        if (window.ethereum) {
+            const handleChainChange = (chainId) => {
+                console.log('Network changed:', chainId);
+                setNetworkId(parseInt(chainId, 16));
+            };
+
+            // Add event listener for chain changes
+            window.ethereum.on('chainChanged', handleChainChange);
+
+            window.ethereum
+                .request({ method: 'eth_requestAccounts' })
+                .then(() => {
+
+                    // Get the initial network ID
+                    window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
+                        setNetworkId(parseInt(id, 16));
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error connecting to MetaMask:', error);
+                });
+        } else {
+            console.warn('MetaMask is not installed.');
+        }
+
+        // Clean up the event listener on component unmount
+        // return () => {
+        //     if (window.ethereum) {
+        //         window.ethereum.off('chainChanged', handleChainChange);
+        //     }
+        // };
+
+    }, [])
+
 
     const Tx = async (account) => {
         let params = [{
@@ -52,13 +85,13 @@ const UserCreateCollection = () => {
             gas: Number(21000).toString(16),
             gasPrice: Number(250000000).toString(16),
             value: Number(5000000000000000).toString(16)
-            // value: await Web3.utils.toWei(0.005, "ether")
         }]
 
         try {
             // await window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
             //     setNetworkId(parseInt(id, 16));
             // });
+            // console.log(networkId);
             // if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
             const result = await window.ethereum.request({ method: 'eth_sendTransaction', params })
             if (!result) return window.alert(' ❌ Transaction Failed.')
@@ -85,6 +118,12 @@ const UserCreateCollection = () => {
             const web3 = new Web3(ethereum);
             const accounts = await web3.eth.getAccounts();
 
+            await window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
+                setNetworkId(parseInt(id, 16));
+            });
+            console.log(networkId);
+            if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
+
 
             await Tx(accounts[0])
 
@@ -102,22 +141,23 @@ const UserCreateCollection = () => {
 
         e.preventDefault()
 
-        setIsLoading(true)
-        console.log(name, banner, JSON.stringify(auth?.user), network)
 
-        if (!banner || !network) return window.alert('all field are required');
+        if (!banner) return window.alert('an image is required');
+        if (!network) return window.alert('all field are required');
+
+        setIsLoading(true)
 
         setFeesTab(true)
 
-        // await payTheCollectionfeeMetamask()
+        await payTheCollectionfeeMetamask()
 
 
         try {
-            // if (!txResult) return alert('❌ Collection creation failed due to UNPAID FEES.')
+            if (!txResult) return alert('❌ Collection creation failed due to UNPAID FEES.')
             const response = await axios.post('/collections', JSON.stringify({ name, banner, owner: auth.user, network }))
             console.log(response.data)
             alert('🎉 collection created successfully.')
-            setTimeout(() => navigate(-1), 1500)
+            setTimeout(() => navigate(-1), 1000)
         } catch (error) {
             setIsLoading(false)
             alert('❌ creation failed.')
@@ -152,7 +192,7 @@ const UserCreateCollection = () => {
                             id="image"
                             className="hidden"
                             onChange={handleImageChange}
-                            required
+                        // required
                         />
                     </label>
                     <label htmlFor="name" className="self-start text-black dark:text-white text-xl">Name: </label>

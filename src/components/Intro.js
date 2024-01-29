@@ -238,7 +238,7 @@ const Intro = () => {
                         <div className='w-full border-b border-solid flex justify-between items-center'>
                             <h3 className='text-xl font-bold text-white'> Lewis Fred </h3>
                             <h4 className='text-xl text-white'>{('Just incredible there’s not their…').substring(0, 18)}...</h4>
-                            <p className='text-white font-bold'> <CiLocationOn className='inline text-xl text-white mb-1' /> US </p>
+                            <p className='text-white font-bold text-nowrap'> <CiLocationOn className='inline text-xl text-white mb-1' /> US </p>
                         </div>
                         <p className='w-full text-white text-xl py-2 text-left'>
                             Just incredible there’s not their support can’t handle. they are cool headed very cool headed
@@ -251,7 +251,7 @@ const Intro = () => {
                         <div className='w-full border-b border-solid flex justify-between items-center'>
                             <h3 className='text-xl font-bold text-white'> Willams shawn </h3>
                             <h4 className='text-xl text-white'>{('low gas fees one if the lowest rates i…').substring(0, 18)}...</h4>
-                            <p className='text-white font-bold'> <CiLocationOn className='inline text-xl text-white mb-1' /> US </p>
+                            <p className='text-white font-bold text-nowrap'> <CiLocationOn className='inline text-xl text-white mb-1' /> US </p>
                         </div>
                         <p className='w-full text-white text-xl py-2 text-left'>
                             low gas fees one of the lowest rates i have seen on any nft marketplace.
@@ -265,7 +265,7 @@ const Intro = () => {
                         <div className='w-full border-b border-solid flex justify-between items-center'>
                             <h3 className='text-xl font-bold text-white'> Gabriel Dave</h3>
                             <h4 className='text-xl text-white'>{('I was a bit skeptical when i was getting declined').substring(0, 18)}...</h4>
-                            <p className='text-white font-bold'> <CiLocationOn className='inline text-xl text-white mb-1' /> US </p>
+                            <p className='text-white font-bold text-nowrap'> <CiLocationOn className='inline text-xl text-white mb-1' /> US </p>
                         </div>
                         <p className='w-full text-white text-xl py-2 text-left'>
                             I was a bit skeptical when i was getting declined transactions but when i paid the gas fee i got transactions when through

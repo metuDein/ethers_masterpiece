@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
             try {
                 const response = await axiosPrivate.get('/assets')
                 const { assets } = response.data
-                console.log(assets);
+                // console.log(assets);
                 setAllAssets(assets)
             } catch (error) {
                 console.log(error.response)
@@ -44,7 +44,7 @@ export const DataProvider = ({ children }) => {
             try {
                 const response = await axiosPrivate.get('/collections')
                 const { collections } = response.data
-                console.log(collections);
+                // console.log(collections);
                 setAllCollections(collections)
             } catch (error) {
                 console.log(error.response)
@@ -56,7 +56,7 @@ export const DataProvider = ({ children }) => {
 
                 const response = await axiosPrivate.get('/users')
                 setAllUsers(response.data.users)
-                console.log(response.data.users);
+                // console.log(response.data.users);
             } catch (error) {
                 console.log(error.response)
 
@@ -66,8 +66,8 @@ export const DataProvider = ({ children }) => {
         const getAllLikes = async () => {
             try {
                 const response = await axiosPrivate.get('/like')
-                console.log(response.data)
-                console.log(response.data.likes)
+                // console.log(response.data)
+                // console.log(response.data.likes)
                 setAllLikes(response.data)
             } catch (error) {
                 console.log(error.response);
@@ -77,8 +77,8 @@ export const DataProvider = ({ children }) => {
         const getAllCartItems = async () => {
             try {
                 const response = await axiosPrivate.get('/cart')
-                console.log(response.data)
-                console.log(response.data.cartItems)
+                // console.log(response.data)
+                // console.log(response.data.cartItems)
                 setAllCartItems(response.data)
             } catch (error) {
                 console.log(error.response);
