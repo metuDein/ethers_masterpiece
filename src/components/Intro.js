@@ -8,7 +8,7 @@ const Intro = () => {
 
     const lastFour = allAssets?.slice(-4)
 
-    console.log(lastFour)
+    // console.log(lastFour)
 
     const SecComp = () => {
         return (

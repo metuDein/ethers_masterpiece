@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useDataContext from '../../hooks/useDataContext'
+
 
 const AppFooter = () => {
+    const { auth } = useDataContext()
+    console.log(auth);
+
     return (
         <footer className='bg-black p-2 pt-1'>
             <section className='max-w-4xl mx-auto py-4 pt-1'>
@@ -40,13 +45,20 @@ const AppFooter = () => {
                                     Profile
                                 </Link>
                             </li>
-                            <li className='text-gray-400'>
+                            {!auth?.user && <li className='text-gray-400'>
                                 <Link
                                     to={'/user-authentication-login'}
                                 >
                                     Login
                                 </Link>
-                            </li>
+                            </li>}
+                            {auth?.roles?.includes(5150) && <li className='text-gray-400'>
+                                <Link
+                                    to={'/admin-panel'}
+                                >
+                                    Admin panel
+                                </Link>
+                            </li>}
                         </ul>
                     </div>
                     <div className='flex flex-col self-start my-2 md:my-0'>
