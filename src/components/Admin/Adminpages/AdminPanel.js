@@ -99,7 +99,9 @@ const AdminPanel = () => {
     const recentMessagesCard = () => {
         return (
             recentMessages.map((item, i) => (
-                <Link key={i} className="w-full bg-white p-2 flex justify-between my-1 rounded-md">
+                <Link
+                    to={`/admin-message/${item?._id}`}
+                    key={i} className="w-full bg-white p-2 flex justify-between my-1 rounded-md">
                     <h2 className="font-bold">{item?.sender}</h2>
                     <div className="flex flex-col items-center justify-center">
                         <p className="font-medium m-0" style={{ lineHeight: '16px' }}>{(item?.subject).substring(0, 9)}...</p>
@@ -189,7 +191,7 @@ const AdminPanel = () => {
             <section className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2  md:grid-cols-4 gap-4 min-h-[50vh] my-12">
                 <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
                     <Link
-                        to={`/collection`}
+                        to={`/admin-all-users`}
                         className='flex flex-col items-center justify-center w-full h-[100%]'>
                         <LiaUsersCogSolid className="text-black mx-auto text-5xl" />
                         <h3 className="font-medium">Users settings</h3>
@@ -198,7 +200,7 @@ const AdminPanel = () => {
                 </article>
                 <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
                     <Link
-                        to={`/collection`}
+                        to={`/admin-all-message`}
                         className='flex flex-col items-center justify-center w-full h-[100%]'>
                         <LuMessagesSquare className="text-black mx-auto text-5xl" />
                         <h3 className="font-medium">Messages</h3>
@@ -207,7 +209,7 @@ const AdminPanel = () => {
                 </article>
                 <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
                     <Link
-                        to={`/collection`}
+                        to={`/admin-all-collection`}
                         className='flex flex-col items-center justify-center w-full h-[100%]'>
                         <GrDocumentImage className="text-black mx-auto text-5xl" />
                         <h3 className="font-medium">Collections</h3>
@@ -216,7 +218,7 @@ const AdminPanel = () => {
                 </article>
                 <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
                     <Link
-                        to={`/collection`}
+                        to={`/admin-all-assets`}
                         className='flex flex-col items-center justify-center w-full h-[100%]'>
                         <FaFileImage className="text-black mx-auto text-5xl" />
                         <h3 className="font-medium"> Assets</h3>

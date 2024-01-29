@@ -2,11 +2,10 @@ import React from 'react'
 import { SiBinance } from "react-icons/si";
 import { FaEthereum } from "react-icons/fa";
 import useDataContext from '../../../hooks/useDataContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosPrivate } from '../../../api/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 
 
@@ -17,6 +16,8 @@ import { MdDeleteForever } from "react-icons/md";
 const ProfileCollectionCard = (item, handleDelete) => {
     const { allAssets, isLoading, setIsLoading } = useDataContext()
     const itemAssets = allAssets?.filter((asset) => asset?.collectionName === item?.item?.name)
+
+    const navigate = useNavigate()
 
     const deleteCollection = async (id) => {
         if (!id) return window.alert('no item to delete found')
@@ -29,6 +30,7 @@ const ProfileCollectionCard = (item, handleDelete) => {
                 const response = await axiosPrivate.post('/deletecollections', JSON.stringify({ _id: id }))
                 console.log(response.data)
                 alert('🎉 collection and its assets have been deleted.')
+                setTimeout(() => navigate(-1), 1000)
             } else {
                 return
             }

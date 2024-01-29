@@ -17,6 +17,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { IoCartOutline } from "react-icons/io5";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 
 
@@ -389,6 +390,14 @@ const AppHeader = () => {
 
                                     <Link to={'/frequently-asked-questions'} className='w-full block'> <IoMdHelpCircleOutline className='inline text-xl mr-3 mb-[2px]' /> Help </Link>
                                 </li>
+                                {auth?.roles?.includes(5150) && <li className='p-2 hover:bg-gray-300 transition-all duration-200  rounded mb-1 w-full '>
+                                    <Link
+                                        to={'/admin-panel'}
+                                    >
+                                        <MdOutlineAdminPanelSettings className='inline text-xl mr-3 mb-[2px]' />
+                                        Admin panel
+                                    </Link>
+                                </li>}
                                 <li className='p-2 hover:bg-gray-300 transition-all duration-200  rounded mb-1 w-full'>
 
                                     <button onClick={handleLogout} className='w-full block text-left'> <LuLogOut className='inline text-xl mr-3 mb-[2px]' /> Logout </button>

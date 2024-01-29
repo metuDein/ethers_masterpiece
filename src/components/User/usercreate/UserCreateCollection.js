@@ -88,11 +88,7 @@ const UserCreateCollection = () => {
         }]
 
         try {
-            // await window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
-            //     setNetworkId(parseInt(id, 16));
-            // });
-            // console.log(networkId);
-            // if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
+
             const result = await window.ethereum.request({ method: 'eth_sendTransaction', params })
             if (!result) return window.alert(' ❌ Transaction Failed.')
             setTxResult(true)

@@ -48,6 +48,7 @@ const UserCreateAsset = () => {
     const handleCreate = async (e) => {
         e.preventDefault()
 
+        if (!collectionName) return alert('❌ creation failed:seem like you don\'t have a collection please create one.')
         if (!name || !image || !price || !supply || !category) return alert('❌ creation failed.')
 
         try {
