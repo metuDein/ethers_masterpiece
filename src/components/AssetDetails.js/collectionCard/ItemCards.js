@@ -45,18 +45,18 @@ const ItemCards = (item) => {
                     <img className='rounded w-full object-cover h-full' src={item?.item?.image || "assets/testimg.png"} alt="asset main banner" />
                 </div>
                 <div className='flex-1 basis-2/5 w-full'>
-                    <h2 className='text-center text-[17px] font-bold pt-1 text-black'> {item?.item?.name} </h2>
+                    <h2 className='text-center text-[17px] font-bold pt-1 text-black'> {(item?.item?.name).substring(0, 13)}... </h2>
 
                     <div className='mt-3 text-black'>
                         {item?.item?.network === 'Ethereum MainNet' && <h3 className='text-center font-medium'> <FaEthereum className='inline' /> {item?.item?.price} ETH <span className='text-gray-600'> (${Math.floor(ethValue * item?.item?.price)} <small className='text-[10px]'>USD</small>) </span> </h3>}
                         {item?.item?.network === 'Binance Smart chain' && <h3 className='text-center font-medium'> <SiBinance className='inline text-yellow-500' /> {item?.item?.price} BNB <span className='text-gray-600'> (${Math.floor(bnbValue * item?.item?.price)}USD) </span> </h3>}
                     </div>
                     <div className='flex  items-center p-2 mt-2 border-t border-t-gray-400'>
-                        <img className='w-[35px] h-[35px] rounded-full object-fill' src={user?.image || "assets/testimg.png"} alt="assets" />
-                        <div className='ml-1'>
+                        {/* <img className='w-[35px] h-[35px] rounded-full object-fill' src={"assets/appmainlogo.png"} alt="assets" /> */}
+                        {/* <div className='ml-1'>
                             <p className='font-medium text-black'>{item?.item?.owner}</p>
                             <p className='text-gray-600 -mt-2 text-[14px]'>@{item?.item?.owner}</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

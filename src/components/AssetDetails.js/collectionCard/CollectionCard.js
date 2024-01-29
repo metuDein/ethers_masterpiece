@@ -63,7 +63,7 @@ const CollectionCard = (item) => {
                             {item?.item?.banner && <img style={{}} className='w-full h-full rounded-full' src={item?.item?.banner || "assets/appmainlogo.png"} alt="collection banner" />}
                         </div>
                         <h2 className='text-black dark:text-white text-xl font-bold text-center text-nowrap'>{(item?.item?.name)?.substring(0, 17)}</h2>
-                        <p className='text-gray-500 dark:text-gray-500 text-center'>@{item?.item?.owner}</p>
+                        {/* <p className='text-gray-500 dark:text-gray-500 text-center'>@{item?.item?.owner}</p> */}
                     </div>
                     <div className='flex absolute bottom-0 left-0 p-3 w-full items-center justify-center'>
                         {!itemAssets?.length && <p className='inline text-center text-black dark:text-white font-bold'>
