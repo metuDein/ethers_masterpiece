@@ -227,7 +227,7 @@ const AdminPanel = () => {
                 </article>
                 <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
                     <Link
-                        to={`/collection`}
+                        to={`/new-outbox-message`}
                         className='flex flex-col items-center justify-center w-full h-[100%]'>
                         <FaReplyAll className="text-black mx-auto text-5xl" />
                         <h3 className="font-medium">Reply / send message(s)</h3>
