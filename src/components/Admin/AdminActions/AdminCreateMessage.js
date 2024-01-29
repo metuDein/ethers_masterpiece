@@ -2,7 +2,7 @@ import { Fragment, useState, } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import useDataContext from '../../../hooks/useDataContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { axiosPrivate } from '../../../api/axios'
@@ -13,6 +13,8 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 const AdminCreateMessage = () => {
+
+    const navigate = useNavigate()
 
     const { allUsers, isLoading, setIsLoading, } = useDataContext()
     const [receiver, setReceiver] = useState('')
@@ -28,7 +30,9 @@ const AdminCreateMessage = () => {
             const response = await axiosPrivate.post('/message', JSON.stringify({ sender: 'Ethers Masterpiece Admin', email: 'admin@ethersmasterpiece.com', receiver: receiver, subject, description }))
             console.log(response.data)
             alert('✅ message sent.')
-
+            setTimeout(() => {
+                navigate(-1)
+            }, 500);
         } catch (error) {
             console.log(error)
             setIsLoading(false)
@@ -51,13 +55,13 @@ const AdminCreateMessage = () => {
                     <label
                         htmlFor="username"
                         className="mb-1 text-xl text-left self-start text-black dark:text-white">
-                        Username (Optional): </label>
+                        Username : </label>
 
                     <Menu as="div" className="relative inline-block text-left dark:bg-black self-start w-full mt-3">
                         <div>
                             <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-[15px] font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                             >
-                                Select a default collection
+                                Select a the receiver
                                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Menu.Button>
                         </div>
@@ -99,6 +103,7 @@ const AdminCreateMessage = () => {
                             </Menu.Items>
                         </Transition>
                     </Menu>
+                    {receiver && <p className='dark:text-white'>sending to {receiver}</p>}
                     <label
                         htmlFor="subject"
                         className="mb-1 text-xl text-left self-start text-black dark:text-white">

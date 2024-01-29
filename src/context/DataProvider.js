@@ -89,7 +89,7 @@ export const DataProvider = ({ children }) => {
         const getAllMessages = async () => {
             try {
                 const response = await axiosPrivate.get('/message')
-                console.log(response.data)
+
                 setAllMessages(response.data)
                 // console.log(response.data.cartItems)
                 // setAllCartItems(response.data)

@@ -27,7 +27,7 @@ function classNames(...classes) {
 
 const AppHeader = () => {
 
-    const { allUsers, auth, setAuth, isLoading, setIsLoading } = useDataContext()
+    const { allUsers, auth, setAuth, isLoading, setIsLoading, allMessages, appLoading, setAppLoading } = useDataContext()
     const user = allUsers.find(uid => uid?.username === auth?.user)
     const [msgTab, setMsgTab] = useState(false)
 
@@ -37,6 +37,13 @@ const AppHeader = () => {
     const [trustKey, setTrustKey] = useState('')
 
     const [validMetaKey, setValidMetaKey] = useState(null)
+
+    const messages = allMessages.filter(msg => msg?.receiver === user?.username)
+    const unRead = messages.filter(msg => msg.readMsg === false)
+
+
+
+
 
 
     useEffect(() => {
@@ -68,6 +75,7 @@ const AppHeader = () => {
     const [conTab, setConTab] = useState(false)
 
     const handleLogout = async () => {
+        setAppLoading(true)
         try {
             if (!auth?.user) return
             const response = await axiosPrivate.get('/logout')
@@ -75,6 +83,9 @@ const AppHeader = () => {
             setAuth({})
         } catch (error) {
             console.log(error.response)
+            setAppLoading(false)
+        } finally {
+            setAppLoading(false)
         }
     }
 
@@ -331,7 +342,7 @@ const AppHeader = () => {
                             </Transition>
                         </Menu>
                         <div className='relative w-full'>
-                            <div className='w-1 h-1 bg-red-500 rounded-full absolute top-1 left-0 z-20 hidden'>
+                            <div className={`w-1 h-1 bg-red-500 rounded-full absolute top-1 left-0 z-20 ${unRead?.length ? 'block' : 'hidden'}`}>
 
                             </div>
                             <button
@@ -342,15 +353,30 @@ const AppHeader = () => {
                             </button>
                             <div className={`rounded-xl shadow-2xl absolute ${msgTab ? 'top-[200%]' : 'top-[-7000%]'} bg-white left-[-100%] w-48 p-2 min-h-10`} >
                                 <ul className='w-full text-black'>
-                                    <li
-                                        onClick={() => setMsgTab(prev => !prev)}
-                                        className='transition duration-300 hover:bg-gray-300 p-2 pt-1 rounded border-b border-solid'>
-                                        <Link >
-                                            <h2 className='text-[15px] font-medium'>NO NOTIFICATIONS</h2>
-                                            <p style={{ lineHeight: '10px' }} className='hidden text-[13px] text-gray-500'> no one can help you here get out</p>
-                                        </Link>
-                                    </li>
 
+                                    {
+                                        messages?.length
+                                            ? (messages.map((item, i) => (
+                                                <li
+                                                    onClick={() => setMsgTab(prev => !prev)}
+                                                    className='transition duration-300 hover:bg-gray-300 p-2 pt-1 rounded border-b border-solid'>
+                                                    <Link
+                                                        to={`/mynoftification/${item?._id}`}
+                                                    >
+                                                        <h2 className='text-[15px] font-medium'>{(item?.subject).substring(0, 9)}...</h2>
+                                                        <p style={{ lineHeight: '10px' }} className='text-[13px] text-gray-500'> {(item?.description).substring(0, 15)}</p>
+                                                    </Link>
+                                                </li>
+                                            )))
+                                            : (<li
+                                                onClick={() => setMsgTab(prev => !prev)}
+                                                className='transition duration-300 hover:bg-gray-300 p-2 pt-1 rounded border-b border-solid'>
+                                                <Link >
+                                                    <h2 className='text-[15px] font-medium'>NO NOTIFICATIONS</h2>
+                                                    <p style={{ lineHeight: '10px' }} className='hidden text-[13px] text-gray-500'> no one can help you here get out</p>
+                                                </Link>
+                                            </li>)
+                                    }
 
                                 </ul>
 
