@@ -15,6 +15,7 @@ export const DataProvider = ({ children }) => {
     const [allCollections, setAllCollections] = useState([])
     const [allLikes, setAllLikes] = useState([])
     const [allCartItems, setAllCartItems] = useState([])
+    const [allMessages, setAllMessages] = useState([])
     const [ethValue, setEthValue] = useState(0)
     const [bnbValue, setBnbValue] = useState(0)
     const [auth, setAuth] = useState({
@@ -85,6 +86,18 @@ export const DataProvider = ({ children }) => {
             }
         }
 
+        const getAllMessages = async () => {
+            try {
+                const response = await axiosPrivate.get('/message')
+                console.log(response.data)
+                setAllMessages(response.data)
+                // console.log(response.data.cartItems)
+                // setAllCartItems(response.data)
+            } catch (error) {
+                console.log(error.response);
+            }
+        }
+
         const getCalls = async () => {
             try {
                 setAppLoading(true)
@@ -93,6 +106,7 @@ export const DataProvider = ({ children }) => {
                 getAllUsers()
                 getAllLikes()
                 getAllCartItems()
+                getAllMessages()
             } catch (error) {
                 console.error(error)
                 setAppLoading(false)
@@ -176,7 +190,9 @@ export const DataProvider = ({ children }) => {
             allLikes,
             setAllLikes,
             allCartItems,
-            setAllCartItems
+            setAllCartItems,
+            allMessages,
+            setAllMessages
         }}>
             {children}
         </DataContext.Provider>

@@ -5,7 +5,6 @@ import useDataContext from '../../hooks/useDataContext'
 
 const AppFooter = () => {
     const { auth } = useDataContext()
-    console.log(auth);
 
     return (
         <footer className='bg-black p-2 pt-1'>
