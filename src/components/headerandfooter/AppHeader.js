@@ -403,7 +403,7 @@ const AppHeader = () => {
                                 <FaEthereum className='inline mb-1' />
                                 <span className='font-medium'>{user?.balance}.00  ETH</span>
                                 <br />
-                                <span className='-mt-1 block text-[14px] text-gray-500'> <span className='inline-block mr-1 mb-1 bg-green-600 w-[5px] h-[5px] rounded-full'>
+                                <span className='-mt-1 block text-[13px] text-gray-500'> <span className='inline-block md:mr-1 mb-1 bg-green-600 w-[5px] h-[5px] rounded-full'>
                                 </span>
                                     {(user?.walletAddress).slice(0, 5).toString()}...{(user?.walletAddress).slice(-4).toString()}
                                 </span>
