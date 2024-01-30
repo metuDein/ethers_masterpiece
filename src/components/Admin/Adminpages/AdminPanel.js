@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { LiaUsersCogSolid } from "react-icons/lia";
-import { LuMessagesSquare } from "react-icons/lu";
+import { LuMessagesSquare, LuImagePlus } from "react-icons/lu";
 import { FaFileImage, FaReplyAll, FaEthereum } from "react-icons/fa";
+import { HiOutlinePencilAlt } from "react-icons/hi";
 import { SiBinance } from "react-icons/si";
 import { GrDocumentImage } from "react-icons/gr";
 import useDataContext from "../../../hooks/useDataContext";
@@ -116,7 +117,7 @@ const AdminPanel = () => {
     const recentAssetsCard = () => {
         return (
             recentAssets.map((item, i) => (
-                <article className='max-w-[212px] w-full max-h-[350px] min-h-[340px] h-full bg-gray-50 shadow-2xl rounded-xl relative group overflow-hidden justify-self-center'>
+                <article key={i} className='max-w-[212px] w-full max-h-[350px] min-h-[340px] h-full bg-gray-50 shadow-2xl rounded-xl relative group overflow-hidden justify-self-center'>
 
                     <div className="w-full bg-gray-200 h-full flex flex-col justify-center items-center">
 
@@ -223,6 +224,24 @@ const AdminPanel = () => {
                         <FaFileImage className="text-black mx-auto text-5xl" />
                         <h3 className="font-medium"> Assets</h3>
                         <p className="text-gray-500">total assets: {allAssets?.length}</p>
+                    </Link>
+                </article>
+                <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
+                    <Link
+                        to={`/admin-create-new-asset`}
+                        className='flex flex-col items-center justify-center w-full h-[100%]'>
+                        <LuImagePlus className="text-black mx-auto text-5xl" />
+                        <h3 className="font-medium"> Create asset</h3>
+                        {/* <p className="text-gray-500">total assets: {allAssets?.length}</p> */}
+                    </Link>
+                </article>
+                <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">
+                    <Link
+                        to={`/admin-create-new-collection`}
+                        className='flex flex-col items-center justify-center w-full h-[100%]'>
+                        <HiOutlinePencilAlt className="text-black mx-auto text-5xl" />
+                        <h3 className="font-medium"> Create Collection</h3>
+                        {/* <p className="text-gray-500">total assets: {allAssets?.length}</p> */}
                     </Link>
                 </article>
                 <article className="rounded-xl bg-white col-span-1  h-[200px] w-full max-w-[250px] justify-self-center shadow-2xl">

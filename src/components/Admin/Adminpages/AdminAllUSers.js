@@ -10,7 +10,7 @@ const AdminAllUSers = () => {
         return allUsers.map((item, i) => (
             <article key={i} className='rounded-xl col-span-1  h-[300px] w-full max-w-[250px] justify-self-center'>
                 <Link
-                    // to={`/my-collection/${item?.item?._id}`}
+                    to={`/admin-edit-user/${item?._id}`}
                     className='flex flex-col w-full h-[100%]'>
                     <div className='bg-gray-300 dark:bg-black/80 w-full basis-2/5 flex-1 pt-3'>
                         <div className='flex flex-row justify-between w-full'>
