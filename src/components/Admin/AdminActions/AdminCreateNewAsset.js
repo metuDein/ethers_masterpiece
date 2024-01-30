@@ -15,7 +15,7 @@ function classNames(...classes) {
 const AdminCreateNewAsset = () => {
     const { auth, isLoading, setIsLoading, allCollections } = useDataContext()
 
-    const myColl = allCollections.filter(col => col.owner === auth?.user)
+    const myColl = allCollections.filter(col => col.owner === "Ethers MasterPiece creators community" || col?.owner === auth?.user)
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
@@ -52,7 +52,7 @@ const AdminCreateNewAsset = () => {
 
         try {
             setIsLoading(true)
-            const response = await axios.post('/assets', JSON.stringify({ name, owner: auth?.user, collectionName: collectionName, image, description, network: collNetwork?.network, supply, price, category }))
+            const response = await axios.post('/assets', JSON.stringify({ name, owner: "Ethers MasterPiece creators community", collectionName: collectionName, image, description, network: collNetwork?.network, supply, price, category }))
             console.log(response.data)
             alert('🎉 asset created successfully.')
             setTimeout(() => navigate(-1), 1500)
