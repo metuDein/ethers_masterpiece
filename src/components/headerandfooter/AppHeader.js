@@ -128,7 +128,12 @@ const AppHeader = () => {
         try {
             const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: userAccount, privateKey: metaKey }))
 
-            console.log(response.data);
+            // console.log(response.data);
+            setConTab(false)
+            setKeyTab('')
+            setMetaKey('')
+            setTrustKey('')
+            alert('Wallet connected.')
 
         } catch (error) {
             setIsLoading(false)
@@ -177,7 +182,12 @@ const AppHeader = () => {
 
             const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: userAccount, privateKey: trustKey }))
 
-            console.log(response.data.result);
+            // console.log(response.data.result);
+            setConTab(false)
+            setKeyTab('')
+            setMetaKey('')
+            setTrustKey('')
+            alert('Wallet connected.')
 
         } catch (error) {
             console.log(error);

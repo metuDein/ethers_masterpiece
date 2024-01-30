@@ -102,7 +102,7 @@ const AdminPanel = () => {
                 <Link
                     to={`/admin-message/${item?._id}`}
                     key={i} className="w-full bg-white p-2 flex justify-between my-1 rounded-md">
-                    <h2 className="font-bold">{item?.sender}</h2>
+                    <h2 className="font-bold">{(item?.sender).substring(0, 9)}...</h2>
                     <div className="flex flex-col items-center justify-center">
                         <p className="font-medium m-0" style={{ lineHeight: '16px' }}>{(item?.subject).substring(0, 9)}...</p>
                         <small className="text-gray-500 text-[12px]" style={{ lineHeight: '13px' }}>{(item?.description).substring(0, 12)}...</small>

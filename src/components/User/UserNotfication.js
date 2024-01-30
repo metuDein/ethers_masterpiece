@@ -52,13 +52,13 @@ const UserNotfication = () => {
 
             <section className="mx-auto max-w-3xl p-3 flex flex-col">
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1">
-                    <p><span className="font-normal">FROM:</span> {message?.sender}</p>
+                    <p className="text-balance"><span className="font-normal">FROM:</span> {message?.sender}</p>
                 </div>
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap">
                     <p> <span className="font-normal">SENT TO:</span>  {message?.receiver} / (ME)</p>
                 </div>
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap">
-                    <p> <span className="font-normal">SUBJECT:</span>  {message?.subject} </p>
+                    <p className="text-balance"> <span className="font-normal">SUBJECT:</span>  {message?.subject} </p>
                 </div>
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap min-h-[400px] max-h-[600px] w-full">
                     <p className="max-w-3xl text-balance">

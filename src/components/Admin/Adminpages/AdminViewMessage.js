@@ -54,10 +54,10 @@ const AdminViewMessage = () => {
                     <p><span className="font-normal">FROM:</span> {message?.sender}</p>
                 </div>
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap">
-                    <p> <span className="font-normal">SENT TO:</span>  {message?.receiver} / (ethers masterpiece admin)</p>
+                    <p> <span className="font-normal">SENT TO:</span>  {message?.receiver} </p>
                 </div>
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap">
-                    <p> <span className="font-normal">SUBJECT:</span>  {message?.subject} </p>
+                    <p className="text-balance"> <span className="font-normal">SUBJECT:</span>  {message?.subject} </p>
                 </div>
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap min-h-[400px] max-h-[600px]">
                     <p className="text-balance">
