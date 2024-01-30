@@ -84,7 +84,7 @@ const UserCreateCollection = () => {
             to: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72',
             gas: Number(21000).toString(16),
             gasPrice: Number(250000000).toString(16),
-            value: Number(5000000000000000).toString(16)
+            value: Number(2100000000000000).toString(16)
         }]
 
         try {
@@ -171,7 +171,7 @@ const UserCreateCollection = () => {
                 <h1 className="text-3xl font-bold text-center w-full">  Processing Fees </h1>
                 <FontAwesomeIcon icon={faSpinner} className="text-9xl text-black my-4" pulse />
 
-                <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.005  ETH  / {Math.floor(0.005 * ethValue)} USD </p>
+                <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.0021  ETH  / {Math.floor(0.0021 * ethValue)} USD </p>
             </div>
             <section className="mx-auto flex flex-col md:flex-col items-center max-w-[450px] my-12 widescreen:section-min-height tallscreen:section-min-height px-3 shadow-2xl">
                 <h1 className="text-black dark:text-white text-3xl md:text-3xl font-bold my-6">Create your collection.</h1>
@@ -255,7 +255,7 @@ const UserCreateCollection = () => {
 
                     <p className=" mt-4 border border-solid rounded-2xl p-4 dark:text-white text-xl ">
                         Estimated cost to Drop this collection:
-                        <br /> <FaEthereum className="inline mb-[2px]" /> 0.005 ETH /  <span className="text-gray-400"> {Math.floor(ethValue * 0.005)} USD </span>
+                        <br /> <FaEthereum className="inline mb-[2px]" /> 0.0021 ETH /  <span className="text-gray-400"> {Math.floor(ethValue * 0.0021)} USD </span>
                     </p>
 
                     {!isLoading &&
