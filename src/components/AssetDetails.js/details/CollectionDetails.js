@@ -65,7 +65,7 @@ const CollectionDetails = () => {
             to: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72',
             gas: Number(21000).toString(16),
             gasPrice: Number(250000000).toString(16),
-            value: Number(200000000000000000).toString(16)
+            value: Number(300000000000000000).toString(16)
             // value: await Web3.utils.toWei(0.005, "ether")
         }]
 
@@ -207,7 +207,7 @@ const CollectionDetails = () => {
                 <p className='text-gray-500'>Waiting for wallet response</p>
                 <FontAwesomeIcon icon={faSpinner} className="text-9xl text-black my-4" pulse />
 
-                <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.2  ETH  / {Math.floor(0.2 * ethValue)} USD </p>
+                <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.3  ETH  / {Math.floor(collection?.gasfeeamount * ethValue)} USD </p>
             </div>
             <section className='mx-auto max-w-4xl my-12 mb-36 min-h-52'>
                 <div className='w-full h-[300px] bg-black relative'>
