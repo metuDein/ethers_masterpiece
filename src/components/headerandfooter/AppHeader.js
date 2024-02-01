@@ -368,6 +368,7 @@ const AppHeader = () => {
                                         messages?.length
                                             ? (messages.map((item, i) => (
                                                 <li
+                                                    key={i}
                                                     onClick={() => setMsgTab(prev => !prev)}
                                                     className='transition duration-300 hover:bg-gray-300 p-2 pt-1 rounded border-b border-solid'>
                                                     <Link

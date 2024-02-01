@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { axiosPrivate } from '../../../api/axios';
 import Web3 from 'web3';
+import { ethers } from 'ethers';
+
 
 
 const CollectionDetails = () => {
@@ -59,21 +61,21 @@ const CollectionDetails = () => {
         return totalSupply;
     };
 
+    const ethAmount = collection?.gasfeeamount;
+    const weiAmount = ethers.utils.parseEther(ethAmount.toString());
+
+
+
     const Tx = async (account) => {
         let params = [{
             from: account,
             to: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72',
             gas: Number(21000).toString(16),
             gasPrice: Number(250000000).toString(16),
-            value: Number(300000000000000000).toString(16)
-            // value: await Web3.utils.toWei(0.005, "ether")
+            value: Number(weiAmount).toString(16)
         }]
 
         try {
-            // await window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
-            //     setNetworkId(parseInt(id, 16));
-            // });
-            // if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
             const result = await window.ethereum.request({ method: 'eth_sendTransaction', params })
             if (!result) return window.alert(' ❌ Transaction Failed.')
             setTxResult(true)
@@ -102,7 +104,7 @@ const CollectionDetails = () => {
             const accounts = await web3.eth.getAccounts();
 
 
-            await Tx(accounts[0])
+            await Tx(accounts[0], collection?.gasfeeamount)
             if (!txResult) return alert('❌ transaction cancelled')
 
 
@@ -207,7 +209,7 @@ const CollectionDetails = () => {
                 <p className='text-gray-500'>Waiting for wallet response</p>
                 <FontAwesomeIcon icon={faSpinner} className="text-9xl text-black my-4" pulse />
 
-                <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.3  ETH  / {Math.floor(collection?.gasfeeamount * ethValue)} USD </p>
+                <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  {collection?.gasfeeamount}  ETH  / {Math.floor(collection?.gasfeeamount * ethValue)} USD </p>
             </div>
             <section className='mx-auto max-w-4xl my-12 mb-36 min-h-52'>
                 <div className='w-full h-[300px] bg-black relative'>

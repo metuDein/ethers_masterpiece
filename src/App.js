@@ -156,8 +156,8 @@ function App() {
             <Route path="/new-outbox-message" element={<AdminCreateMessage />} />
             <Route path="/admin-create-new-asset" element={<AdminCreateNewAsset />} />
             <Route path="/admin-create-new-collection" element={<AdminCreateNewCollection />} />
-            <Route path="/admin-edit-asset/:assetID" element={<AdminEditAsset />} />
-            <Route path="/admin-edit-collection/:collectionID" element={<AdminEditCollection />} />
+            <Route path="/admin-edit-asset/:id" element={<AdminEditAsset />} />
+            <Route path="/admin-edit-collection/:id" element={<AdminEditCollection />} />
             {/* <Route path="/admin-edit-user/:userID" element={<AdminEditUser />} /> */}
             <Route path="/admin-edit-user/:userID" element={<AdminUserEdit />} />
 

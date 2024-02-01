@@ -1,6 +1,6 @@
 import useDataContext from "../../../hooks/useDataContext"
-import ProfileCollectionCard from "../../User/usercards/ProfileCollectionCard"
 import { useNavigate } from "react-router-dom"
+import ProfileCollectionCard from "../AdminActions/admincard/ProfileCollectionCard"
 
 const AdminAllCollection = () => {
     const { allCollections } = useDataContext()
