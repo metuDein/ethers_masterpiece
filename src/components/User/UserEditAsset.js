@@ -89,8 +89,6 @@ const UserEditAsset = () => {
                         id="price"
                         placeholder="set a price for this asset"
                         className="w-full p-3 text-xl text-black dark:text-white rounded-xl focus:outline-none bg-transparent border border-solid placeholder:text-[15px]"
-                        min={2}
-                        max={20}
                         required
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}
@@ -104,8 +102,6 @@ const UserEditAsset = () => {
                         onChange={(e) => setSupply(e.target.value)}
                         value={supply}
                         required
-                        min={2}
-                        max={15}
                     />
                     <label htmlFor="description" className="self-start text-black dark:text-white text-xl">Description: </label>
                     <textarea

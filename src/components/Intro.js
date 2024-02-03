@@ -29,10 +29,13 @@ const Intro = () => {
 
     return (
         <main className='bg-black/65 w-full min-h-screen z-[-2]'>
-            <section className='w-full min-h-[100vh]'>
+            <section className='w-full min-h-[100vh] widescreen:section-min-height tallscreen:section-min-height'>
                 <video src="assets/appbackground.mp4" loop autoPlay muted playsInline className='w-full h-full z-[-1] absolute object-fill'>
 
                 </video>
+                <div className='w-full min-h-screen absolute bg-black -bottom-3 -z-10'>
+
+                </div>
 
                 <section className='max-w-4xl mx-auto w-full p-3 flex items-center justify-center min-h-[90vh]'>
                     <div>

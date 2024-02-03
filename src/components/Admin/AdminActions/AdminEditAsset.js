@@ -19,6 +19,7 @@ const AdminEditAsset = () => {
     const [name, setName] = useState(asset?.name)
     const [price, setPrice] = useState(asset?.price)
     const [supply, setSupply] = useState(asset?.supply)
+    const [likes, setLikes] = useState(asset?.likes)
     const [description, setDescription] = useState(asset?.description)
 
     const handleImageChange = (e) => {
@@ -38,11 +39,11 @@ const AdminEditAsset = () => {
         try {
             setIsLoading(true)
             if (image) {
-                const response = await axiosPrivate.patch('/assets', JSON.stringify({ _id: asset?._id, name: name, price: price, supply: supply, description: description, image: image }))
+                const response = await axiosPrivate.patch('/admineditasset', JSON.stringify({ _id: asset?._id, name: name, price: price, supply: supply, likes, description: description, image: image }))
                 console.log(response.data)
                 alert('🎉 update successful')
             } else {
-                const response = await axiosPrivate.patch('/assets', JSON.stringify({ _id: asset?._id, name: name, price: price, supply: supply, description: description }))
+                const response = await axiosPrivate.patch('/admineditasset', JSON.stringify({ _id: asset?._id, name: name, price: price, supply: supply, likes, description: description }))
                 console.log(response.data)
                 alert('🎉 update successful')
             }
@@ -91,8 +92,6 @@ const AdminEditAsset = () => {
                         id="price"
                         placeholder="set a price for this asset"
                         className="w-full p-3 text-xl text-black dark:text-white rounded-xl focus:outline-none bg-transparent border border-solid placeholder:text-[15px]"
-                        min={2}
-                        max={20}
                         required
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}
@@ -106,8 +105,16 @@ const AdminEditAsset = () => {
                         onChange={(e) => setSupply(e.target.value)}
                         value={supply}
                         required
-                        min={2}
-                        max={15}
+                    />
+                    <label htmlFor="likes" className="self-start text-black dark:text-white text-xl">Likes: </label>
+                    <input
+                        type="number"
+                        id="likes"
+                        placeholder="total amount to be minted"
+                        className="w-full p-3 text-xl text-black dark:text-white rounded-xl focus:outline-none bg-transparent border border-solid placeholder:text-[15px]"
+                        onChange={(e) => setLikes(e.target.value)}
+                        value={likes}
+                        required
                     />
                     <label htmlFor="description" className="self-start text-black dark:text-white text-xl">Description: </label>
                     <textarea
