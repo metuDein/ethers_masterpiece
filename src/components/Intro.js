@@ -29,15 +29,15 @@ const Intro = () => {
 
     return (
         <main className='bg-black/65 w-full min-h-screen z-[-2]'>
-            <section className='w-full min-h-[90vh]'>
-                <video src="assets/appbackground.mp4" loop autoPlay muted playsInline className='w-full h-full absolute right-0 bottom-0 z-[-1] object-fill'>
+            <section className='w-full min-h-[100vh]'>
+                <video src="assets/appbackground.mp4" loop autoPlay muted playsInline className='w-full h-full z-[-1] absolute object-fill'>
 
                 </video>
 
                 <section className='max-w-4xl mx-auto w-full p-3 flex items-center justify-center min-h-[90vh]'>
                     <div>
                         <h2 className='text-3xl md:text-5xl font-bold text-white text-center md:text-left'>
-                            Ethers MasterPiece easily buy and sell you assets
+                            Ethers MasterPiece easily buy and sell your assets
                         </h2>
                         <h3 style={{ lineHeight: '20px' }} className='mt-6 text-white text-[14px] md:text-[16px] text-center md:text-left'>
                             Discover boundless creativity on Ether Masterpiece an exclusive NFT platform where visionary artists tokenize their exceptional works. Immerse yourself in a world of digital art, where every masterpiece is uniquely crafted on the Ethereum blockchain, creating a decentralized gallery of unparalleled beauty and innovation.

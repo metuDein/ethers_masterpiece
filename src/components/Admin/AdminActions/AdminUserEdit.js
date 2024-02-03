@@ -55,23 +55,23 @@ const AdminUserEdit = () => {
     }
     const deleteUser = async (id) => {
         setIsLoading(true)
-        try {
-            const confirmAction = window.confirm('deleting this user will also delete its assets and collections...continue?')
-            if (confirmAction) {
+        const confirmAction = window.confirm('deleting this user ...continue?')
+        if (confirmAction) {
+            try {
 
-                const response = await axiosPrivate.post('/adminusers', JSON.stringify({ _id: id }))
+                const response = await axiosPrivate.post('/adminuser', JSON.stringify({ _id: id }))
                 console.log(response.data)
-                alert('🎉 collection and its assets have been deleted.')
+                alert('🎉 user have been deleted.')
                 setTimeout(() => navigate(-1), 1000)
-            } else {
                 setIsLoading(false)
-                return
+            } catch (error) {
+                console.log(error)
+                setIsLoading(false)
+            } finally {
+                setIsLoading(true)
             }
-        } catch (error) {
-            console.log(error)
-            setIsLoading(false)
-        } finally {
-            setIsLoading(true)
+        } else {
+            return
         }
     }
 

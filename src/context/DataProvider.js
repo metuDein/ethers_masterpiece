@@ -26,7 +26,7 @@ export const DataProvider = ({ children }) => {
     })
 
 
-    const [persist, setPersist] = useState(localStorage.getItem('persist') || false)
+    const [persist, setPersist] = useState(JSON.parse(localStorage.getItem('persist' || false)))
 
     useEffect(() => {
 
