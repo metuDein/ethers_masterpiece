@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FaEthereum } from 'react-icons/fa'
 import { IoLogoUsd, IoIosPulse } from "react-icons/io";
 import ProfileAssetCard from '../../User/usercards/ProfileAssetCard';
@@ -17,6 +17,8 @@ import { ethers } from 'ethers';
 const CollectionDetails = () => {
     const [tab, setTab] = useState('stats')
     const [txResult, setTxResult] = useState(false)
+    const [networkId, setNetworkId] = useState('')
+
     const { allAssets, allCollections, isLoading, setIsLoading, ethValue } = useDataContext()
     const { id } = useParams()
     const navigate = useNavigate()
@@ -61,62 +63,62 @@ const CollectionDetails = () => {
         return totalSupply;
     };
 
-    const ethAmount = collection?.gasfeeamount;
-    const weiAmount = ethers.utils.parseEther(ethAmount.toString());
 
 
 
-    const Tx = async (account) => {
-        let params = [{
-            from: account,
-            to: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72',
-            gas: Number(21000).toString(16),
-            gasPrice: Number(250000000).toString(16),
-            value: Number(weiAmount).toString(16)
-        }]
-
+    let txSuccess = false
+    const startPayment = async ({ ether, addr }) => {
+        if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
         try {
-            const result = await window.ethereum.request({ method: 'eth_sendTransaction', params })
-            if (!result) return window.alert(' ❌ Transaction Failed.')
-            setTxResult(true)
-            return alert('Transaction successful')
-        } catch (error) {
-            alert('❌ transaction cancelled')
-            console.log(error.message);
-            console.log(error.name);
+            if (!window.ethereum)
+                throw new Error("No crypto wallet found. Please install it.");
+
+            await window.ethereum.send("eth_requestAccounts");
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            ethers.utils.getAddress(addr);
+            const tx = await signer.sendTransaction({
+                to: addr,
+                value: ethers.utils.parseEther(ether)
+            });
+            txSuccess = true
+            console.log("tx", tx);
+
+        } catch (err) {
+            console.log(err.message)
+            alert('Error: Insufficient user balance',)
+        }
+    };
+    useEffect(() => {
+        if (window.ethereum) {
+            const handleChainChange = (chainId) => {
+                console.log('Network changed:', chainId);
+                setNetworkId(parseInt(chainId, 16));
+            };
+
+            // Add event listener for chain changes
+            window.ethereum.on('chainChanged', handleChainChange);
+
+            window.ethereum
+                .request({ method: 'eth_requestAccounts' })
+                .then(() => {
+
+                    // Get the initial network ID
+                    window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
+                        setNetworkId(parseInt(id, 16));
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error connecting to MetaMask:', error);
+                });
+        } else {
+            console.warn('MetaMask is not installed.');
         }
 
-    }
-
-    const payTheCollectionfeeMetamask = async () => {
-        try {
-            setFeesTab(true)
-            setIsLoading(true)
-            const ethereum = window.ethereum
-
-            if (!ethereum) return window.alert('no wallet extension found. if you are on mobile, please switch to Trust wallet mobile app or metamask app.');
-
-            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-            if (!connect) return console.log('connection failed');
 
 
-            const web3 = new Web3(ethereum);
-            const accounts = await web3.eth.getAccounts();
+    }, [])
 
-
-            await Tx(accounts[0], collection?.gasfeeamount)
-            if (!txResult) return alert('❌ transaction cancelled')
-
-
-        } catch (error) {
-            alert('❌ transaction cancelled')
-            console.log(error);
-            setIsLoading(false)
-        } finally {
-            setIsLoading(false)
-            setFeesTab(false)
-        }
-    }
 
     const deleteCollection = async (id) => {
         if (!id) return window.alert('no item to delete found')
@@ -229,7 +231,7 @@ const CollectionDetails = () => {
                             <span className='font-bold'>   Estimated at: <FaEthereum className='inline mb-1' /> {collection?.gasfeeamount} ETH / {Math.floor(collection?.gasfeeamount * ethValue)} USD </span>
                         </p>
                         <button
-                            onClick={payTheCollectionfeeMetamask}
+                            onClick={() => startPayment({ addr: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72', ether: (collection?.gasfeeamount).toString() })}
                             className='bg-black text-white text-xl p-2 rounded-xl mt-3 mx-auto block'>
                             Pay Now
                         </button>

@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom"
 import useDataContext from "../../../hooks/useDataContext"
 import axios from "../../../api/axios"
 import Web3 from "web3"
-
+import { ethers } from "ethers"
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -68,70 +68,36 @@ const UserCreateCollection = () => {
             console.warn('MetaMask is not installed.');
         }
 
-        // Clean up the event listener on component unmount
-        // return () => {
-        //     if (window.ethereum) {
-        //         window.ethereum.off('chainChanged', handleChainChange);
-        //     }
-        // };
+
 
     }, [])
 
 
-    const Tx = async (account) => {
-        let params = [{
-            from: account,
-            to: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72',
-            gas: Number(21000).toString(16),
-            gasPrice: Number(250000000).toString(16),
-            value: Number(2100000000000000).toString(16)
-        }]
-
+    let txSuccess = false
+    const startPayment = async ({ ether, addr }) => {
+        if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
         try {
+            if (!window.ethereum)
+                throw new Error("No crypto wallet found. Please install it.");
 
-            const result = await window.ethereum.request({ method: 'eth_sendTransaction', params })
-            if (!result) return window.alert(' ❌ Transaction Failed.')
-            setTxResult(true)
-            return alert('Transaction successful')
-        } catch (error) {
-
-            console.log(error.message);
-            console.log(error.name);
-        }
-
-    }
-
-    const payTheCollectionfeeMetamask = async () => {
-        try {
-            const ethereum = window.ethereum
-
-            if (!ethereum) return window.alert('no wallet extension found. if you are on mobile, please switch to Trust wallet mobile app or metamask app.');
-
-            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-            if (!connect) return console.log('connection failed');
-
-
-            const web3 = new Web3(ethereum);
-            const accounts = await web3.eth.getAccounts();
-
-            await window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
-                setNetworkId(parseInt(id, 16));
+            await window.ethereum.send("eth_requestAccounts");
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            ethers.utils.getAddress(addr);
+            const tx = await signer.sendTransaction({
+                to: addr,
+                value: ethers.utils.parseEther(ether)
             });
-            console.log(networkId);
-            if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
+            txSuccess = true
+            console.log("tx", tx);
 
-
-            await Tx(accounts[0])
-
-
-        } catch (error) {
-            console.log(error);
-            setIsLoading(false)
-        } finally {
-            setIsLoading(false)
-            setFeesTab(false)
+        } catch (err) {
+            console.log(err.message)
+            alert('Error:', err.name)
         }
-    }
+    };
+
+
 
     const handleCreate = async (e) => {
 
@@ -145,18 +111,18 @@ const UserCreateCollection = () => {
 
         setFeesTab(true)
 
-        await payTheCollectionfeeMetamask()
+        await startPayment({ addr: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72', ether: '0.0021' })
 
 
         try {
-            if (!txResult) return alert('❌ Collection creation failed due to UNPAID FEES.')
+            if (!txSuccess) return alert('❌ Collection creation failed due to UNPAID FEES or INSUFFICIENT FUNDS.')
             const response = await axios.post('/collections', JSON.stringify({ name, banner, owner: auth.user, network }))
             console.log(response.data)
             alert('🎉 collection created successfully.')
             setTimeout(() => navigate(-1), 1000)
         } catch (error) {
             setIsLoading(false)
-            alert('❌ creation failed.')
+            alert('❌ creation failed. There was a duplicate found.')
             console.log(error.response)
         } finally {
             setFeesTab(false)
