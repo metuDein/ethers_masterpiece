@@ -93,7 +93,7 @@ const UserCreateCollection = () => {
 
         } catch (err) {
             console.log(err.message)
-            alert('Error:', err.name)
+            alert('Error: Insufficient user balance',)
         }
     };
 
