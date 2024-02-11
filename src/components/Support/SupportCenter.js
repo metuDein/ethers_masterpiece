@@ -30,7 +30,7 @@ const SupportCenter = () => {
 
         setIsLoading(true)
         try {
-            const response = await axiosPrivate.post('/message', JSON.stringify({ sender: user?.username, email, receiver: receiver?.username, subject, description }))
+            const response = await axiosPrivate.post('/message', JSON.stringify({ sender: user?.username || 'new user', email, receiver: receiver?.username, subject, description }))
             console.log(response.data)
             alert('✅ message sent.')
 
