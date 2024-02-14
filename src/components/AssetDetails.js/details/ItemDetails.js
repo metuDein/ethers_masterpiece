@@ -75,7 +75,7 @@ const ItemDetails = () => {
 
     const txTab = () => {
         return (
-            <section className={`max-w-3xl bg-white absolute z-10 ${initiateTx ? 'top-[10%] ' : 'top-[-200%] '} left-[0] sm:left-[18%] p-4 sm:p-6 flex flex-col space-x-2 sm:flex-row mx-auto w-full rounded-2xl transition-all duration-500`}>
+            <section className={`max-w-3xl bg-white absolute z-10 ${initiateTx ? 'top-[20px] md:top-[1%] ' : 'top-[-200%]'} left-[0] sm:left-[18%] p-4 sm:p-6 flex flex-col space-x-2 sm:flex-row mx-auto w-full rounded-2xl transition-all duration-500`}>
                 <div className='basis-2/4 w-full h-[350px]'>
                     <img className='h-full rounded-lg' src={asset?.image} alt="txfailed" />
                 </div>
