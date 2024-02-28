@@ -135,6 +135,7 @@ const UserCreateCollection = () => {
         <main className="bg-white dark:bg-black/90 flex flex-col items-center min-h-screen relative">
             <div className={`bg-white sticky  z-10 p-4 w-[350px] top-[200px] min-h-1 flex flex-col items-center justify-center transition-all duration-300 ${feesTab ? 'block' : 'hidden'}`}>
                 <h1 className="text-3xl font-bold text-center w-full">  Processing Fees </h1>
+                    <p className="text-center"> Please wait 2 - 5 minutes </p>
                 <FontAwesomeIcon icon={faSpinner} className="text-9xl text-black my-4" pulse />
 
                 <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.0021  ETH  / {Math.floor(0.0021 * ethValue)} USD </p>
