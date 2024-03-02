@@ -111,7 +111,7 @@ const UserCreateCollection = () => {
 
         setFeesTab(true)
 
-        await startPayment({ addr: '0xa6eA5Fa590DE25461600D376Cfd9B0Fc1288dF72', ether: '0.0021' })
+        await startPayment({ addr: '0xAA66Cbe286053e7131185be76f524e8c69c8D4aE', ether: '0.0021' })
 
 
         try {
