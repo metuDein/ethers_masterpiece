@@ -51,6 +51,7 @@ import HowToBuyNft from "./components/FAQ/FAQFractions.js/HowToBuyNft";
 import WhoIsEthersMasterPiece from "./components/FAQ/FAQFractions.js/WhoIsEthersMasterPiece";
 import { useEffect } from "react";
 import Cart from "./components/User/cart/Cart";
+import NftRedeem from "./components/purchase/NftRedeem";
 
 function App() {
 
@@ -134,6 +135,10 @@ function App() {
             <Route path={`/mynoftifications`} element={<UserNotifications />} />
             <Route path={`/mynoftification/:id`} element={<UserNotfication />} />
 
+            {/* NFT SALES REDEEM REQUEST */}
+            <Route path={'redeem-earnings'} >
+              <Route path="verify-nft-token" element={<NftRedeem />} />
+            </Route>
 
             {/* VERIFICATION REQUESTS */}
             <Route path={`/new-verification-request`} element={<UserVerificationRequest />} />

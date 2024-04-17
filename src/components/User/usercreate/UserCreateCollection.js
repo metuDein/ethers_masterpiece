@@ -9,7 +9,6 @@ import { GiPadlock } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom"
 import useDataContext from "../../../hooks/useDataContext"
 import axios from "../../../api/axios"
-import Web3 from "web3"
 import { ethers } from "ethers"
 
 function classNames(...classes) {
@@ -26,7 +25,7 @@ const UserCreateCollection = () => {
     const [banner, setBanner] = useState('')
     const [network, setNetwork] = useState('')
     const [networkId, setNetworkId] = useState('')
-    const [txResult, setTxResult] = useState(false)
+    // const [txResult, setTxResult] = useState(false)
     const [feesTab, setFeesTab] = useState(false)
 
     const navigate = useNavigate()

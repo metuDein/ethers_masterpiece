@@ -23,7 +23,7 @@ const ItemDetails = () => {
 
 
     const myLike = allLikes.find(like => like.owner === user?.username && like.item === id)
-    const assetLikes = allLikes.filter(like => like.item === id)
+    // const assetLikes = allLikes.filter(like => like.item === id)
     const similarAssets = allAssets.filter(ast => ast.category === asset?.category && ast.name !== asset?.name)
 
     const handleInitiateTx = () => {
@@ -59,7 +59,7 @@ const ItemDetails = () => {
         try {
             const response = await axiosPrivate.post('/dislike', JSON.stringify({ _id: myLike?._id, item: id }))
             console.log(response.data);
-            const newlike = response.data
+            // const newlike = response.data
             setAllLikes((prev) => {
                 const newLikes = prev.filter(like => like._id !== myLike?._id)
                 return newLikes
