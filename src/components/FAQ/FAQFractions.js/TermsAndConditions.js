@@ -18,7 +18,7 @@ const TermsAndConditions = () => {
 
                 <h2 className='font-bold text-2xl my-2 mt-5'>3. Gas Fees</h2>
                 <h3 className='font-bold text-xl my-2 ml-3'>3.1 Definition</h3>
-                <p className='text-[15px] ml-3'>Gas fees refer to the cost associated with validating and processing transactions on the blockchain. Users are responsible for paying the applicable gas fees associated with their transactions. This kept at a default of 10% of the value of the total artwork e.g the total value of the artworks of a collection is 1 ETH, the gas is estimated at 0.1 ETH, which is 10% of 1 ETH</p>
+                <p className='text-[15px] ml-3'>Gas fees refer to the cost associated with validating and processing transactions on the blockchain. Users are responsible for paying the applicable gas fees associated with their transactions. This is kept at a default of 10% of the value of the total artwork e.g the total value of the artworks of a collection is 1 ETH, the gas is estimated at 0.1 ETH, which is 10% of 1 ETH</p>
                 <h3 className='font-bold text-xl my-2 ml-3'>3.2 Calculation and Payment</h3>
                 <p className='text-[15px] ml-3'>Gas fees are calculated based on blockchain network conditions and may vary. Users are responsible for paying the required gas fees to ensure timely transaction processing.</p>
 
