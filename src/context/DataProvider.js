@@ -28,13 +28,43 @@ export const DataProvider = ({ children }) => {
 
     const [persist, setPersist] = useState(JSON.parse(localStorage.getItem('persist' || false)))
 
+    const getAllAssets = async () => {
+        try {
+            const response = await axiosPrivate.get('/assets')
+            const { assets } = response.data
+            setAllAssets(assets)
+        } catch (error) {
+            console.log(error.response)
+        }
+
+    }
+    const getAllCollections = async () => {
+        try {
+            const response = await axiosPrivate.get('/collections')
+            const { collections } = response.data
+            setAllCollections(collections)
+        } catch (error) {
+            console.log(error.response)
+        }
+
+    }
+    const getAllUsers = async () => {
+        try {
+
+            const response = await axiosPrivate.get('/users')
+            setAllUsers(response.data.users)
+        } catch (error) {
+            console.log(error.response)
+
+        }
+    }
+
     useEffect(() => {
 
         const getAllAssets = async () => {
             try {
                 const response = await axiosPrivate.get('/assets')
                 const { assets } = response.data
-                // console.log(assets);
                 setAllAssets(assets)
             } catch (error) {
                 console.log(error.response)
@@ -45,7 +75,6 @@ export const DataProvider = ({ children }) => {
             try {
                 const response = await axiosPrivate.get('/collections')
                 const { collections } = response.data
-                // console.log(collections);
                 setAllCollections(collections)
             } catch (error) {
                 console.log(error.response)
@@ -57,7 +86,6 @@ export const DataProvider = ({ children }) => {
 
                 const response = await axiosPrivate.get('/users')
                 setAllUsers(response.data.users)
-                // console.log(response.data.users);
             } catch (error) {
                 console.log(error.response)
 
@@ -67,8 +95,6 @@ export const DataProvider = ({ children }) => {
         const getAllLikes = async () => {
             try {
                 const response = await axiosPrivate.get('/like')
-                // console.log(response.data)
-                // console.log(response.data.likes)
                 setAllLikes(response.data)
             } catch (error) {
                 console.log(error.response);
@@ -78,8 +104,6 @@ export const DataProvider = ({ children }) => {
         const getAllCartItems = async () => {
             try {
                 const response = await axiosPrivate.get('/cart')
-                // console.log(response.data)
-                // console.log(response.data.cartItems)
                 setAllCartItems(response.data)
             } catch (error) {
                 console.log(error.response);
@@ -192,7 +216,10 @@ export const DataProvider = ({ children }) => {
             allCartItems,
             setAllCartItems,
             allMessages,
-            setAllMessages
+            setAllMessages,
+            getAllAssets,
+            getAllCollections,
+            getAllUsers
         }}>
             {children}
         </DataContext.Provider>

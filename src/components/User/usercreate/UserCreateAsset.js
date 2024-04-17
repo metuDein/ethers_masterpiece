@@ -56,6 +56,7 @@ const UserCreateAsset = () => {
             const response = await axios.post('/assets', JSON.stringify({ name, owner: auth?.user, collectionName: collectionName, image, description, network: collNetwork?.network, supply, price, category }))
             console.log(response.data)
             alert('🎉 asset created successfully.')
+            getAllAssets()
             setTimeout(() => navigate(-1), 1500)
         } catch (error) {
             setIsLoading(false)

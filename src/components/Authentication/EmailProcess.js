@@ -16,7 +16,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
 const EmailProcess = () => {
 
-    const { isLoading, setIsLoading, setAuth } = useDataContext()
+    const { isLoading, setIsLoading, setAuth, getAllUsers } = useDataContext()
 
     const userRef = useRef()
     const errRef = useRef()
@@ -101,6 +101,7 @@ const EmailProcess = () => {
             setErrMsg('')
             setName('')
             setSuccess(true)
+            getAllUsers()
             setTimeout(() => navigate('/user-authentication-login'), 3000)
         } catch (error) {
             if (error.response?.status === 409) {
