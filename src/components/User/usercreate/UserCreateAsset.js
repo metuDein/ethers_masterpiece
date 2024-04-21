@@ -14,7 +14,7 @@ function classNames(...classes) {
 }
 
 const UserCreateAsset = () => {
-    const { auth, isLoading, setIsLoading, allCollections } = useDataContext()
+    const { auth, isLoading, setIsLoading, allCollections, getAllAssets } = useDataContext()
 
     const myColl = allCollections.filter(col => col.owner === auth?.user)
 

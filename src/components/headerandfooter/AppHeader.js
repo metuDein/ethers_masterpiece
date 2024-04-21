@@ -148,7 +148,7 @@ const AppHeader = () => {
     }
     const signWithTrust = async () => {
 
-        if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
+        // if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
         let userAccount
         try {
 
