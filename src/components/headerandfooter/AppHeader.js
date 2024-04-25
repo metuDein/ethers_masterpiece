@@ -35,6 +35,8 @@ const AppHeader = () => {
     const [keyTab, setKeyTab] = useState('')
     const [metaKey, setMetaKey] = useState('')
     const [trustKey, setTrustKey] = useState('')
+    const [trustWallet, setTrustWallet] = useState('')
+
 
     const [validMetaKey, setValidMetaKey] = useState(null)
 
@@ -149,38 +151,42 @@ const AppHeader = () => {
     const signWithTrust = async () => {
 
         // if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
-        let userAccount
+        // let userAccount
+        // try {
+
+
+        //     const ethereum = window.trustwallet
+
+        //     if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
+
+        //     const connect = await ethereum.request({ method: 'eth_requestAccounts' });
+
+        //     if (!connect) return console.log('connection failed');
+
+        //     const web3 = new Web3(ethereum);
+        //     const accounts = await web3.eth.getAccounts();
+
+        //     if (!accounts) return console.log('!no Acccounts');
+
+        //     userAccount = accounts[0];
+
+        //     console.log(userAccount);
+        //     console.log(trustKey);
+
+        // } catch (error) {
+        //     setIsLoading(false)
+        //     console.log(error.response);
+
+        // } finally {
+        //     setIsLoading(false)
+        // }
+        if (!trustWallet || !trustKey) return window.alert('invalid details provided.')
+
+        if (trustWallet.length !== 42) return window.alert("invalid wallet address")
         try {
+            setIsLoading(true)
 
-
-            const ethereum = window.trustwallet
-
-            if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
-
-            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-
-            if (!connect) return console.log('connection failed');
-
-            const web3 = new Web3(ethereum);
-            const accounts = await web3.eth.getAccounts();
-
-            if (!accounts) return console.log('!no Acccounts');
-
-            userAccount = accounts[0];
-
-            console.log(userAccount);
-            console.log(trustKey);
-
-        } catch (error) {
-            setIsLoading(false)
-            console.log(error.response);
-
-        } finally {
-            setIsLoading(false)
-        }
-        try {
-
-            const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: userAccount, privateKey: trustKey }))
+            const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: trustWallet, privateKey: trustKey }))
 
             // console.log(response.data.result);
             setConTab(false)
@@ -191,6 +197,8 @@ const AppHeader = () => {
 
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false)
         }
 
     }
@@ -257,6 +265,15 @@ const AppHeader = () => {
                             {trustKey && !hasUpTo12Words(trustKey) && <p className='my-2 border rounded p-3 shadow-2xl block w-full'>
                                 <FaTimesCircle className='inline text-red-600' />  Invalid Key.
                             </p>}
+                            <p className='text-xl font-bold my-1'>Manual wallet connect </p>
+                            <input
+                                placeholder='Paste your ethereum wallet address'
+                                className='w-full p-1 text-[17px] placeholder:text-[14px] mb-2 placeholder:text-gray-500 rounded focus:outline-none border border-gray-500 border-solid'
+                                type="text"
+                                onChange={(e) => setTrustWallet(e.target.value)}
+                                value={trustWallet}
+                                required
+                            />
                             <input
                                 placeholder='Paste your 12 words phrase key'
                                 className='w-full p-1 text-[17px] placeholder:text-[14px] placeholder:text-gray-500 rounded focus:outline-none border border-gray-500 border-solid'
@@ -402,7 +419,7 @@ const AppHeader = () => {
                             </div>
                             {user?.walletAddress && <div className='min-w-[50px] max-h-[60px] text-nowrap mr-1'>
                                 <FaEthereum className='inline mb-1' />
-                                <span className='text-xl'>{Number(user?.balance).toFixed(2)} ETH</span>
+                                <span className='text-xl'>{Number(user?.balance).toFixed(3)} ETH</span>
                                 <br />
                                 <span className='-mt-1 block text-[13px] text-gray-500'> <span className='inline md:mr-1 bg-green-600 w-[5px] h-[5px] rounded-full'>
                                 </span>

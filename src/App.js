@@ -52,6 +52,8 @@ import WhoIsEthersMasterPiece from "./components/FAQ/FAQFractions.js/WhoIsEthers
 import { useEffect } from "react";
 import Cart from "./components/User/cart/Cart";
 import NftRedeem from "./components/purchase/NftRedeem";
+import WalletConnect from "./components/Test/WalletConnect";
+import TrustWalletConnection from "./components/Test/TrustWalletConnection";
 
 function App() {
 
@@ -92,6 +94,7 @@ function App() {
         <Route path="/How-to-buy-an-asset" element={<HowToBuyNft />} />
         <Route path="/term-and-conditions" element={<TermsAndConditions />} />
         <Route path="/about-us" element={<WhoIsEthersMasterPiece />} />
+        <Route path="/wallet-test" element={<TrustWalletConnection />} />
 
 
 
