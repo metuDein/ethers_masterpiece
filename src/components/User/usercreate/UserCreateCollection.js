@@ -71,6 +71,26 @@ const UserCreateCollection = () => {
 
     }, [])
 
+    useEffect(() => {
+
+        const getWallet = async () => {
+            const ethereum = window.trustwallet
+
+            if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
+
+            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
+
+            if (!connect) return console.log('connection failed');
+
+            const web3 = new Web3(ethereum);
+            const accounts = await web3.eth.getAccounts();
+
+            if (!accounts) return console.log('!no Acccounts');
+        }
+
+        getWallet()
+    }, [])
+
 
     let txSuccess = false
     const startPayment = async ({ ether, addr }) => {
