@@ -419,7 +419,7 @@ const AppHeader = () => {
                             </div>
                             {user?.walletAddress && <div className='min-w-[50px] max-h-[60px] text-nowrap mr-1'>
                                 <FaEthereum className='inline mb-1' />
-                                <span className='text-xl'>{Number(user?.balance).toFixed(3)} ETH</span>
+                                <span className='text-xl'>{Number(user?.balance).toFixed(4)} ETH</span>
                                 <br />
                                 <span className='-mt-1 block text-[13px] text-gray-500'> <span className='inline md:mr-1 bg-green-600 w-[5px] h-[5px] rounded-full'>
                                 </span>
