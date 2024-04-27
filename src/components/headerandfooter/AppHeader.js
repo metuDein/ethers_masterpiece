@@ -121,7 +121,7 @@ const AppHeader = () => {
             console.log(metaKey);
         } catch (error) {
             console.log(error);
-            setIsLoading(false)
+            alert(error.message)
         } finally {
             setIsLoading(false)
         }
@@ -197,6 +197,7 @@ const AppHeader = () => {
 
         } catch (error) {
             console.log(error);
+            alert(error.message)
         } finally {
             setIsLoading(false)
         }
