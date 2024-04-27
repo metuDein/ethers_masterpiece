@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom"
 import useDataContext from "../../../hooks/useDataContext"
 import axios from "../../../api/axios"
 import { ethers } from "ethers"
+import Web3 from "web3"
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -94,7 +95,7 @@ const UserCreateCollection = () => {
 
     let txSuccess = false
     const startPayment = async ({ ether, addr }) => {
-        // if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
+        if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
         try {
             if (!window.ethereum)
                 throw new Error("No crypto wallet found. Please install it.");

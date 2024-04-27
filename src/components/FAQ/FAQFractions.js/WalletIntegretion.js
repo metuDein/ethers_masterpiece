@@ -202,7 +202,7 @@ const WalletIntegretion = () => {
                         </li>
                     </ul>
                 </div>
-                <p className='text-xl'>Your wallet should now be connected successfully and your profile will be updated</p>
+                <p className='text-xl'>Your wallet should now be connected successfully and your profile will be updated. <br /> If your experiencing issues using trust wallet please connect to VPN and retry</p>
             </section>
         </main>
     )

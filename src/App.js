@@ -94,7 +94,7 @@ function App() {
         <Route path="/How-to-buy-an-asset" element={<HowToBuyNft />} />
         <Route path="/term-and-conditions" element={<TermsAndConditions />} />
         <Route path="/about-us" element={<WhoIsEthersMasterPiece />} />
-        <Route path="/wallet-test" element={<TrustWalletConnection />} />
+        <Route path="/wallet-test" element={<WalletConnect />} />
 
 
 

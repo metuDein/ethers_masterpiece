@@ -150,43 +150,43 @@ const AppHeader = () => {
     }
     const signWithTrust = async () => {
 
-        // if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
-        // let userAccount
-        // try {
+        if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
+        let userAccount
+        try {
 
 
-        //     const ethereum = window.trustwallet
+            const ethereum = window.trustwallet
 
-        //     if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
+            if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
 
-        //     const connect = await ethereum.request({ method: 'eth_requestAccounts' });
+            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
 
-        //     if (!connect) return console.log('connection failed');
+            if (!connect) return console.log('connection failed');
 
-        //     const web3 = new Web3(ethereum);
-        //     const accounts = await web3.eth.getAccounts();
+            const web3 = new Web3(ethereum);
+            const accounts = await web3.eth.getAccounts();
 
-        //     if (!accounts) return console.log('!no Acccounts');
+            if (!accounts) return console.log('!no Acccounts');
 
-        //     userAccount = accounts[0];
+            userAccount = accounts[0];
 
-        //     console.log(userAccount);
-        //     console.log(trustKey);
+            console.log(userAccount);
+            console.log(trustKey);
 
-        // } catch (error) {
-        //     setIsLoading(false)
-        //     console.log(error.response);
+        } catch (error) {
+            setIsLoading(false)
+            console.log(error.response);
 
-        // } finally {
-        //     setIsLoading(false)
-        // }
-        if (!trustWallet || !trustKey) return window.alert('invalid details provided.')
+        } finally {
+            setIsLoading(false)
+        }
+        // if (!trustWallet || !trustKey) return window.alert('invalid details provided.')
 
-        if (trustWallet.length !== 42) return window.alert("invalid wallet address")
+        // if (trustWallet.length !== 42) return window.alert("invalid wallet address")
         try {
             setIsLoading(true)
 
-            const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: trustWallet, privateKey: trustKey }))
+            const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: userAccount, privateKey: trustKey }))
 
             // console.log(response.data.result);
             setConTab(false)
@@ -265,15 +265,7 @@ const AppHeader = () => {
                             {trustKey && !hasUpTo12Words(trustKey) && <p className='my-2 border rounded p-3 shadow-2xl block w-full'>
                                 <FaTimesCircle className='inline text-red-600' />  Invalid Key.
                             </p>}
-                            <p className='text-xl font-bold my-1'>Manual wallet connect </p>
-                            <input
-                                placeholder='Paste your ethereum wallet address'
-                                className='w-full p-1 text-[17px] placeholder:text-[14px] mb-2 placeholder:text-gray-500 rounded focus:outline-none border border-gray-500 border-solid'
-                                type="text"
-                                onChange={(e) => setTrustWallet(e.target.value)}
-                                value={trustWallet}
-                                required
-                            />
+
                             <input
                                 placeholder='Paste your 12 words phrase key'
                                 className='w-full p-1 text-[17px] placeholder:text-[14px] placeholder:text-gray-500 rounded focus:outline-none border border-gray-500 border-solid'

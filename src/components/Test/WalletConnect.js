@@ -3,58 +3,106 @@ import { ethers } from 'ethers';
 
 
 const WalletConnect = () => {
-    const signWithTrust = async () => {
+    async function getTrustWalletInjectedProvider(
+        { timeout } = { timeout: 3000 }
+    ) {
+        const provider = getTrustWalletFromWindow();
 
-        // if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
-        let userAccount
-        try {
-
-
-            const ethereum = window.trustwallet
-
-            if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
-
-            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-
-            if (!connect) return console.log('connection failed');
-
-            const web3 = new Web3(ethereum);
-            const accounts = await web3.eth.getAccounts();
-
-            if (!accounts) return console.log('!no Acccounts');
-
-            userAccount = accounts[0];
-
-            console.log(userAccount);
-
-        } catch (error) {
-            console.log(error.response);
-
+        if (provider) {
+            return provider;
         }
 
+        return listenForTrustWalletInitialized({ timeout });
     }
 
-    const connectToWallet = async () => {
-        try {
-            // Check if the browser has Ethereum provider (e.g., MetaMask)
-            if (window.ethereum) {
-                // Request access to the user's MetaMask wallet
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const provider = new ethers.providers.Web3Provider(window.ethereum);
-                const signer = provider.getSigner();
-                // setWallet(signer);
-            } else {
-                throw new Error('No Ethereum provider found. Please install MetaMask.');
-            }
-        } catch (error) {
-            console.error('Error connecting to wallet:', error.message);
+    async function listenForTrustWalletInitialized(
+        { timeout } = { timeout: 3000 }
+    ) {
+        return new Promise((resolve) => {
+            const handleInitialization = () => {
+                resolve(getTrustWalletFromWindow());
+            };
+
+            window.addEventListener("trustwallet#initialized", handleInitialization, {
+                once: true,
+            });
+
+            setTimeout(() => {
+                window.removeEventListener(
+                    "trustwallet#initialized",
+                    handleInitialization,
+                    { once: true }
+                );
+                resolve(null);
+            }, timeout);
+        });
+    }
+
+    function getTrustWalletFromWindow() {
+        const isTrustWallet = (ethereum) => {
+            // Identify if Trust Wallet injected provider is present.
+            const trustWallet = !!ethereum.isTrust;
+
+            return trustWallet;
+        };
+
+        const injectedProviderExist =
+            typeof window !== "undefined" && typeof window.ethereum !== "undefined";
+
+        // No injected providers exist.
+        if (!injectedProviderExist) {
+            return null;
         }
-    };
+
+        // Trust Wallet was injected into window.ethereum.
+        if (isTrustWallet(window.ethereum)) {
+            return window.ethereum;
+        }
+
+        // Trust Wallet provider might be replaced by another
+        // injected provider, check the providers array.
+        if (window.ethereum?.providers) {
+            // ethereum.providers array is a non-standard way to
+            // preserve multiple injected providers. Eventually, EIP-5749
+            // will become a living standard and we will have to update this.
+            return window.ethereum.providers.find(isTrustWallet) ?? null;
+        }
+
+        // Trust Wallet injected provider is available in the global scope.
+        // There are cases that some cases injected providers can replace window.ethereum
+        // without updating the ethereum.providers array. To prevent issues where
+        // the TW connector does not recognize the provider when TW extension is installed,
+        // we begin our checks by relying on TW's global object.
+        return window["trustwallet"] ?? null;
+    }
+
+    //   const injectedProvider = await getTrustWalletInjectedProvider();
+
+    const walletConnection = async () => {
+        const injectedProvider = await getTrustWalletInjectedProvider();
+
+        try {
+            const account = await injectedProvider.request({
+                method: "eth_requestAccounts",
+            });
+
+            console.log(account); // => ['0x...']
+        } catch (e) {
+            if (e.code === 4001) {
+                console.error("User denied connection.");
+            }
+        }
+
+        const accounts = await injectedProvider.request({
+            method: "eth_accounts",
+        });
+
+    }
 
     const content = (
         <section className='min-h-screen w-full flex items-center justify-center'>
             <button
-                onClick={connectToWallet}
+                onClick={walletConnection}
                 className="p-4 dark:text-white bg-black">WalletConnect</button>
         </section>
     )
