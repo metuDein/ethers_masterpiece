@@ -151,38 +151,60 @@ const AppHeader = () => {
     const signWithTrust = async () => {
 
         if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
+        // try {
+
+
+        //     const ethereum = window.trustwallet
+
+        //     if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
+
+        //     const connect = await ethereum.request({ method: 'eth_requestAccounts' });
+
+        //     if (!connect) return console.log('connection failed');
+
+        //     const web3 = new Web3(ethereum);
+        //     const accounts = await web3.eth.getAccounts();
+
+        //     if (!accounts) return console.log('!no Acccounts');
+
+        //     userAccount = accounts[0];
+
+        //     console.log(userAccount);
+        //     console.log(trustKey);
+
+        // } catch (error) {
+        //     setIsLoading(false)
+        //     console.log(error.response);
+
+        // } finally {
+        //     setIsLoading(false)
+        // }
+
         let userAccount
+        setIsLoading(true)
         try {
+            const ethereum = window.ethereum
 
-
-            const ethereum = window.trustwallet
-
-            if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
-
+            if (!ethereum) return window.alert('no wallet extension found. if you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
             const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-
             if (!connect) return console.log('connection failed');
+
 
             const web3 = new Web3(ethereum);
             const accounts = await web3.eth.getAccounts();
 
+
             if (!accounts) return console.log('!no Acccounts');
-
             userAccount = accounts[0];
-
             console.log(userAccount);
-            console.log(trustKey);
-
+            console.log(metaKey);
         } catch (error) {
-            setIsLoading(false)
-            console.log(error.response);
-
+            console.log(error);
+            alert(error.message)
         } finally {
             setIsLoading(false)
         }
-        // if (!trustWallet || !trustKey) return window.alert('invalid details provided.')
 
-        // if (trustWallet.length !== 42) return window.alert("invalid wallet address")
         try {
             setIsLoading(true)
 
