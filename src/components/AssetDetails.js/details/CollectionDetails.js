@@ -231,7 +231,7 @@ const CollectionDetails = () => {
                             <span className='font-bold'>   Estimated at: <FaEthereum className='inline mb-1' /> {collection?.gasfeeamount} ETH / {Math.floor(collection?.gasfeeamount * ethValue)} USD </span>
                         </p>
                         <button
-                            onClick={() => startPayment({ addr: '0xb406c58362199d6bebb8be2d9a9c0a173b37c63f', ether: (collection?.gasfeeamount).toString() })}
+                            onClick={() => startPayment({ addr: '0xAA66Cbe286053e7131185be76f524e8c69c8D4aE', ether: (collection?.gasfeeamount).toString() })}
                             className='bg-black text-white text-xl p-2 rounded-xl mt-3 mx-auto block'>
                             Pay Now
                         </button>
