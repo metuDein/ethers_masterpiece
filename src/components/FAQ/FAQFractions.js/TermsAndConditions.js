@@ -22,8 +22,7 @@ const TermsAndConditions = () => {
                 <h3 className='font-bold text-xl my-2 ml-3'>3.2 Calculation and Payment</h3>
                 <p className='text-[15px] ml-3'>Gas fees are calculated based on blockchain network conditions and may vary. Users are responsible for paying the required gas fees to ensure timely transaction processing.</p>
                
-                <h2 className='font-bold text-2xl my-2 mt-5'>3. Wallet Intergration</h2>
-                <h3 className='font-bold text-xl my-2 ml-3'>3.1 Definition</h3>
+                <h3 className='font-bold text-xl my-2 ml-3'>3.3 Wallet intergration</h3>
                 <p className='text-[15px] ml-3'>Your wallets private key or 12 word phrase might be requested when connecting your wallet. Your private key helps with application programming interface...it creates a user interface that's easy to use. It also helps with creating and maintaining the smart-contract for your collections, It is important to know that your private key are note kept by us nor can it be at anytime accessed, viewed or used by anyone except from you.</p>
                 
 
