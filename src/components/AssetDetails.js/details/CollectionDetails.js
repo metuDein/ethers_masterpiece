@@ -223,7 +223,7 @@ const CollectionDetails = () => {
                             <p className='text-gray-600 dark:text-gray-400'> @{(collection?.owner).substring(0, 9)}... <span className='float-right ml-4 text-white'>{collection?.network} {collection?.network === 'Ethereum MainNet' ? (<FaEthereum className='inline text-black' />) : (<SiBinance className='inline text-yellow-500' />)} </span></p>
                         </div>
                     </div>
-                    {collection?.gasFee > 0 && <div className='bg-white w-[200px] md:w-[400px] p-3 self-end rounded-xl absolute top-1 right-1'>
+                    {collection?.gasfeeamount > 0 && <div className='bg-white w-[200px] md:w-[400px] p-3 self-end rounded-xl absolute top-1 right-1'>
                         <p className='text-black '>
                             <span className='font-bold text-red-800'> <AiFillWarning className='inline text-red-800 ' /> Warning! <br /> </span>
                             The gas fees for this collection have not been paid
