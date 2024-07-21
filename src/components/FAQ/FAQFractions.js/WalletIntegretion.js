@@ -9,7 +9,7 @@ const WalletIntegretion = () => {
                 <h2 className='mt-4 font-bold text-xl text-center'>How to connect your metamask wallet</h2>
                 <div className="w-full flex flex-wrap flex-row flex-auto items-start justify-center gap-6 min-h-[50vh] my-12 mt-2  p-2">
                     <article className='w-full justify-self-start align-middle max-w-[300px] min-h-[199px] max-h-[220px] h-full rounded-xl shadow-2xl border border-gray-400 bg-gray-100 text-black'>
-                        <p className='my-2 text-black font-medium px-2'> Firstly we advise you complete this process on your pc </p>
+                        <p className='my-2 text-black font-medium px-2'> Firstly we advise you complete this process on your pc and also be careful when accessing your private key and 12 word phrases. </p>
                         <p className='font-medium px-2'>You must have the metamask extension or mobile app. </p>
                         <Link
                             target='_blank'
