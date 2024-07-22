@@ -175,7 +175,7 @@ export const DataProvider = ({ children }) => {
             getCalls();
             getBnbValue();
             getEthValue();
-        }, 180000);
+        }, 600000);
 
         const appLoader = () => {
             setAppLoading(true)
