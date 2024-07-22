@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = 'http://localhost:3500'
-const baseURL = 'https://ethers-masterpiece-backend.onrender.com'
+const baseURL = 'https://ethers-backend.onrender.com'
 
 export default axios.create({
     baseURL,
