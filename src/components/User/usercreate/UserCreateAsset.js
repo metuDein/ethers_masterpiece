@@ -57,6 +57,13 @@ const UserCreateAsset = () => {
             console.log(response.data)
             alert('🎉 asset created successfully.')
             getAllAssets()
+            setName('')
+            setCategory('')
+            setCollectionName('')
+            setImage('')
+            setDescription('')
+            setPrice('')
+            setSupply('')
             setTimeout(() => navigate(-1), 1500)
         } catch (error) {
             setIsLoading(false)
