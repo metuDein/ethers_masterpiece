@@ -7,6 +7,7 @@ const WalletIntegretion = () => {
             <section className='max-w-4xl mx-auto'>
                 <h1 className='text-black dark:text-white text-4xl font-bold text-center'>How to Connect Your Wallet</h1>
                 <h2 className='mt-4 font-bold text-xl text-center'>How to connect your metamask wallet</h2>
+                <p className='text-[15px] p-2'>Your wallets private key or 12 word phrase might be requested when connecting your wallet. Your private key helps with application programming interface...it creates a user interface that's easy to use. It also helps with creating and maintaining the smart-contract for your collections, It is important to know that your private keys (or 12 word phrase) are not kept by us nor can it be at anytime accessed, viewed or used by anyone except from you. If you want to change your wallet please speak with our customer care.</p>
                 <div className="w-full flex flex-wrap flex-row flex-auto items-start justify-center gap-6 min-h-[50vh] my-12 mt-2  p-2">
                     <article className='w-full justify-self-start align-middle max-w-[300px] min-h-[199px] max-h-[220px] h-full rounded-xl shadow-2xl border border-gray-400 bg-gray-100 text-black'>
                         <p className='my-2 text-black font-medium px-2'> Firstly we advise you complete this process on your pc and also be careful when accessing your private key and 12 word phrases. </p>
