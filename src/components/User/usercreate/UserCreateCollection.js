@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faImage, faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { Fragment, useEffect, useState, } from 'react'
+import { Fragment, useRef, useState, } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { SiBinance } from "react-icons/si";
@@ -26,8 +26,9 @@ const UserCreateCollection = () => {
     const [banner, setBanner] = useState('')
     const [network, setNetwork] = useState('')
     const [networkId, setNetworkId] = useState('')
-    // const [txResult, setTxResult] = useState(false)
+    const [gasFeeAlert, setGasFeeAlert] = useState(false)
     const [feesTab, setFeesTab] = useState(false)
+    const alertRef = useRef(null)
 
     const navigate = useNavigate()
 
@@ -42,61 +43,32 @@ const UserCreateCollection = () => {
 
     }
 
-    useEffect(() => {
-        if (window.ethereum) {
-            const handleChainChange = (chainId) => {
-                console.log('Network changed:', chainId);
-                setNetworkId(parseInt(chainId, 16));
-            };
 
-            // Add event listener for chain changes
-            window.ethereum.on('chainChanged', handleChainChange);
 
-            window.ethereum
-                .request({ method: 'eth_requestAccounts' })
-                .then(() => {
+    const getWallet = async () => {
+        const ethereum = window.trustwallet
 
-                    // Get the initial network ID
-                    window.ethereum.request({ method: 'eth_chainId' }).then((id) => {
-                        setNetworkId(parseInt(id, 16));
-                    });
-                })
-                .catch((error) => {
-                    console.error('Error connecting to MetaMask:', error);
-                });
-        } else {
-            console.warn('MetaMask is not installed.');
-        }
+        if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
+
+        const connect = await ethereum.request({ method: 'eth_requestAccounts' });
+
+        if (!connect) return console.log('connection failed');
+
+        const web3 = new Web3(ethereum);
+        const accounts = await web3.eth.getAccounts();
+
+        if (!accounts) return console.log('!no Acccounts');
+    }
 
 
 
-    }, [])
-
-    useEffect(() => {
-
-        const getWallet = async () => {
-            const ethereum = window.trustwallet
-
-            if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
-
-            const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-
-            if (!connect) return console.log('connection failed');
-
-            const web3 = new Web3(ethereum);
-            const accounts = await web3.eth.getAccounts();
-
-            if (!accounts) return console.log('!no Acccounts');
-        }
-
-        getWallet()
-    }, [])
 
 
     let txSuccess = false
     const startPayment = async ({ ether, addr }) => {
         if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
         try {
+            await getWallet()
             if (!window.ethereum)
                 throw new Error("No crypto wallet found. Please install it.");
 
@@ -118,6 +90,12 @@ const UserCreateCollection = () => {
     };
 
 
+    const handleTabClose = () => {
+        setGasFeeAlert(false)
+
+        setTimeout(() => navigate(-1), 1000)
+
+    }
 
     const handleCreate = async (e) => {
 
@@ -138,9 +116,10 @@ const UserCreateCollection = () => {
             if (!txSuccess) return alert('❌ Collection creation failed due to UNPAID FEES or INSUFFICIENT FUNDS.')
             const response = await axios.post('/collections', JSON.stringify({ name, banner, owner: auth.user, network }))
             console.log(response.data)
-            alert('🎉 collection created successfully.')
+            // alert('🎉 collection created successfully.')
+            setGasFeeAlert(true)
             getAllCollections()
-            setTimeout(() => navigate(-1), 1000)
+
         } catch (error) {
             setIsLoading(false)
             alert('❌ creation failed. There was a duplicate found.')
@@ -161,8 +140,21 @@ const UserCreateCollection = () => {
 
                 <p className="font-bold text-gray-500">  FEES: <FaEthereum className="inline mb-1" />  0.0021  ETH  / {Math.floor(0.0021 * ethValue)} USD </p>
             </div>
-            <section className="mx-auto flex flex-col md:flex-col items-center max-w-[450px] my-12 widescreen:section-min-height tallscreen:section-min-height px-3 shadow-2xl">
+            <section className="mx-auto flex flex-col md:flex-col items-center max-w-[450px] my-12 widescreen:section-min-height tallscreen:section-min-height px-3 shadow-2xl relative">
                 <h1 className="text-black dark:text-white text-3xl md:text-3xl font-bold my-6">Create your collection.</h1>
+                {gasFeeAlert && <div className="mx-auto w-[22rem] min-h-[20rem] p-3 rounded-md bg-slate-50 absolute top-56 z-50">
+                    <div>
+                        <img className="rounded-md" src="assets/success.gif" alt="" />
+                    </div>
+                    <div className="mx-auto">
+                        <p className="p-2">
+                            <b className="underline mr-1">Friendly reminder!!!</b>
+                            The gas fees of you collection are estimated at 10% of the toal value of the assets with a collection
+                            <Link className="text-blue-500 ml-1 underline" to={'/term-and-conditions'} target="_blank">Learn More</Link>
+                        </p>
+                    </div>
+                    <button className="p-2 rounded bg-blue-600 text-center w-full text-white active:bg-blue-400" onClick={() => handleTabClose()}> Close </button>
+                </div>}
                 <p className="text-black dark:text-white text-xl mb-3 text-center">Provide the required details for your collection.</p>
                 <form onSubmit={handleCreate} className='mx-auto bg-transparent  flex flex-col w-full max-w-[400px] p-2 items-center min-h-2'>
                     <label htmlFor="image" className="w-full text-center mb-3 cursor-pointer">
@@ -253,12 +245,12 @@ const UserCreateCollection = () => {
                                 "bg-black dark:bg-white text-white dark:text-black text-[16px] text-center w-full font-medium rounded-full p-2 hover:bg-gray-400 dark:hover:bg-gray-300 transition duration-[300ms] active:bg-gray-600 mt-11 mb-6">
                                 Continue
                             </button>
-                            <article
+                            {/* <article
                                 onClick={() => navigate(-1)}
                                 className=
                                 "bg-gray-400  text-black text-[16px] text-center w-full font-medium rounded-full p-2 hover:bg-gray-400 dark:hover:bg-gray-300 transition duration-[300ms] active:bg-gray-600 mb-6 cursor-pointer">
                                 Cancel
-                            </article>
+                            </article> */}
                         </>}
                     {isLoading && <article
                         className=
