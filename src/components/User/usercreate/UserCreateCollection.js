@@ -46,7 +46,8 @@ const UserCreateCollection = () => {
 
 
     const getWallet = async () => {
-        const ethereum = window.trustwallet
+        try{
+         const ethereum = window.ethereum
 
         if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
 
@@ -58,6 +59,9 @@ const UserCreateCollection = () => {
         const accounts = await web3.eth.getAccounts();
 
         if (!accounts) return console.log('!no Acccounts');
+        }catch (error) {
+            alert(error.message)
+        }
     }
 
 
