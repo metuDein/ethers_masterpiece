@@ -113,11 +113,11 @@ const UserCreateCollection = () => {
 
         setFeesTab(true)
 
-        await startPayment({ addr: '0xAA66Cbe286053e7131185be76f524e8c69c8D4aE', ether: '0.0021' })
+      //  await startPayment({ addr: '0xAA66Cbe286053e7131185be76f524e8c69c8D4aE', ether: '0.0021' })
 
 
         try {
-             if (!txSuccess) return alert('❌ Collection creation failed due to UNPAID FEES or INSUFFICIENT FUNDS.')
+           //  if (!txSuccess) return alert('❌ Collection creation failed due to UNPAID FEES or INSUFFICIENT FUNDS.')
             const response = await axios.post('/collections', JSON.stringify({ name, banner, owner: auth.user, network }))
             console.log(response.data)
             // alert('🎉 collection created successfully.')
