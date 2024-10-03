@@ -120,7 +120,7 @@ const UserCreateCollection = () => {
            if (!txSuccess) return alert('❌ Collection creation failed due to UNPAID FEES or INSUFFICIENT FUNDS.')
             const response = await axios.post('/collections', JSON.stringify({ name, banner, owner: auth.user, network }))
             console.log(response.data)
-            // alert('🎉 collection created successfully.')
+            alert('🎉 collection created successfully.')
             setGasFeeAlert(true)
             getAllCollections()
 
