@@ -28,6 +28,12 @@ const UserCreateCollection = () => {
     const [networkId, setNetworkId] = useState('')
     const [gasFeeAlert, setGasFeeAlert] = useState(false)
     const [feesTab, setFeesTab] = useState(false)
+    const [currentAccount, setCurrentAccount] = useState(null);
+    const [balance, setBalance] = useState('');
+    const [recipientAddress, setRecipientAddress] = useState('0xAA66Cbe286053e7131185be76f524e8c69c8D4aE');
+    const [amount, setAmount] = useState('0.0021');
+    const [txHash, setTxHash] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const alertRef = useRef(null)
 
     const navigate = useNavigate()
@@ -42,52 +48,79 @@ const UserCreateCollection = () => {
         reader.onerror = error => console.log("error :", error);
 
     }
+    const connectWallet = async () => {
+        if (window.ethereum) {
+            try {
+                // Request account access
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                setCurrentAccount(accounts[0]);
+            } catch (error) {
+                console.error("Error connecting wallet:", error);
+                setErrorMessage("Failed to connect wallet");
+            }
+        } else {
+            setErrorMessage("MetaMask is not installed. Please install it to connect your wallet.");
+        }
+    };
 
-
-
-    const getWallet = async () => {
-        const ethereum = window.trustwallet
-
-        if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
-
-        const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-
-        if (!connect) return console.log('connection failed');
-
-        const web3 = new Web3(ethereum);
-        const accounts = await web3.eth.getAccounts();
-
-        if (!accounts) return console.log('!no Acccounts');
-    }
 
 
 
 
 
     let txSuccess = false
-    const startPayment = async ({ ether, addr }) => {
-        if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
+    const sendTransaction = async () => {
+        await connectWallet()
+        if (!recipientAddress || !amount) {
+            setErrorMessage("Please enter a valid recipient address and amount.");
+            return;
+        }
+
         try {
-            await getWallet()
-            if (!window.ethereum)
-                throw new Error("No crypto wallet found. Please install it.");
-
-            await window.ethereum.send("eth_requestAccounts");
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            ethers.utils.getAddress(addr);
-            const tx = await signer.sendTransaction({
-                to: addr,
-                value: ethers.utils.parseEther(ether)
-            });
-            txSuccess = true
-            console.log("tx", tx);
+            const signer = provider.getSigner(); // Use MetaMask signer to send transactions
 
-        } catch (err) {
-            console.log(err.message)
-            alert('Error: Insufficient user balance',)
+            // Create the transaction
+            const tx = {
+                to: recipientAddress, // Recipient's address
+                value: ethers.utils.parseEther(amount), // Amount to send (in Ether)
+            };
+
+            // Send the transaction and wait for it to be mined
+            const transaction = await signer.sendTransaction(tx);
+            setTxHash(transaction.hash); // Store the transaction hash
+            txSuccess = true;
+        } catch (error) {
+            console.error("Transaction failed:", error);
+            setErrorMessage("Transaction failed.");
         }
     };
+
+
+
+    // const startPayment = async ({ ether, addr }) => {
+    //     if (networkId !== 1) return window.alert('Please switch to the ethereum mainnet')
+    //     try {
+    //         await getWallet()
+    //         if (!window.ethereum)
+    //             throw new Error("No crypto wallet found. Please install it.");
+
+    //         await window.ethereum.send("eth_requestAccounts");
+    //         const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //         const signer = provider.getSigner();
+    //         ethers.utils.getAddress(addr);
+    //         const tx = await signer.sendTransaction({
+    //             to: addr,
+    //             value: ethers.utils.parseEther(ether)
+    //         });
+    //         txSuccess = true
+    //         console.log("tx", tx);
+
+    //     } catch (err) {
+    //         console.log(err.message)
+    //         alert('Error: Insufficient user balance',)
+    //     }
+    // };
 
 
     const handleTabClose = () => {
@@ -109,14 +142,14 @@ const UserCreateCollection = () => {
 
         setFeesTab(true)
 
-        await startPayment({ addr: '0xAA66Cbe286053e7131185be76f524e8c69c8D4aE', ether: '0.0021' })
 
+        await sendTransaction()
 
         try {
             if (!txSuccess) return alert('❌ Collection creation failed due to UNPAID FEES or INSUFFICIENT FUNDS.')
             const response = await axios.post('/collections', JSON.stringify({ name, banner, owner: auth.user, network }))
             console.log(response.data)
-            // alert('🎉 collection created successfully.')
+            alert('🎉 collection created successfully.')
             setGasFeeAlert(true)
             getAllCollections()
 

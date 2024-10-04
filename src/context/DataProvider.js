@@ -65,7 +65,7 @@ export const DataProvider = ({ children }) => {
             try {
                 const response = await axiosPrivate.get('/appdata')
                 const { collections, assets, users, likes, cart, messages } = response.data
-                console.log(response.data)
+                // console.log(response.data)
                 setAllAssets(assets)
                 setAllCollections(collections)
                 setAllUsers(users)
