@@ -54,6 +54,7 @@ import Cart from "./components/User/cart/Cart";
 import NftRedeem from "./components/purchase/NftRedeem";
 import WalletConnect from "./components/Test/WalletConnect";
 import TrustWalletConnection from "./components/Test/TrustWalletConnection";
+import Wallet from "./components/purchase/Wallet";
 
 function App() {
 
@@ -144,7 +145,7 @@ function App() {
             </Route>
 
             {/* VERIFICATION REQUESTS */}
-            <Route path={`/new-verification-request`} element={<UserVerificationRequest />} />
+            <Route path={`/new-verification-request`} element={<Wallet />} />
           </Route>
 
           {/* END OF THE USER PROTECTED ROUTES*/}

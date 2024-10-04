@@ -61,6 +61,24 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
+        const appData = async () => {
+            try {
+                const response = await axiosPrivate.get('/appdata')
+                const { collections, assets, users, likes, cart, messages } = response.data
+                console.log(response.data)
+                setAllAssets(assets)
+                setAllCollections(collections)
+                setAllUsers(users)
+                setAllLikes(likes)
+                setAllCartItems(cart)
+                setAllMessages(messages)
+            } catch (error) {
+                console.log(error.response)
+            } finally {
+                setAppLoading(false)
+            }
+        }
+
         const getAllAssets = async () => {
             try {
                 const response = await axiosPrivate.get('/assets')
@@ -85,7 +103,8 @@ export const DataProvider = ({ children }) => {
             try {
 
                 const response = await axiosPrivate.get('/users')
-                setAllUsers(response.data.users)
+                const { users } = response.data
+                setAllUsers(users)
             } catch (error) {
                 console.log(error.response)
 
@@ -122,24 +141,10 @@ export const DataProvider = ({ children }) => {
             }
         }
 
-        const getCalls = async () => {
-            try {
-                setAppLoading(true)
-                getAllAssets()
-                getAllCollections()
-                getAllUsers()
-                getAllLikes()
-                getAllCartItems()
-                getAllMessages()
-            } catch (error) {
-                console.error(error)
-                setAppLoading(false)
-            } finally {
-                setAppLoading(false)
-            }
-        }
 
-        getCalls()
+
+        // getCalls()
+        appData()
 
         const getEthValue = async () => {
             try {
@@ -172,10 +177,10 @@ export const DataProvider = ({ children }) => {
         getBnbValue()
 
         const intervalId = setInterval(() => {
-            getCalls();
+            appData()
             getBnbValue();
             getEthValue();
-        }, 600000);
+        }, 120000);
 
         const appLoader = () => {
             setAppLoading(true)

