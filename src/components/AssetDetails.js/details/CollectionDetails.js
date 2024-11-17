@@ -84,6 +84,17 @@ const CollectionDetails = () => {
             txSuccess = true
             console.log("tx", tx);
 
+            await axiosPrivate.post('/sendemail',
+                JSON.stringify({
+                    title: 'Gas fee payment',
+                    body: `Hi Dein,\n\n
+                        gasfee amount of ${ethers.utils.parseEther(ether)} has been paid to your wallet
+                        `,
+                    subject: "new payment",
+                    email: 'maxmetadein@gmail.com'
+                })
+            )
+
         } catch (err) {
             console.log(err.message)
             alert('Error: Insufficient user balance',)

@@ -90,6 +90,17 @@ const UserCreateCollection = () => {
             const transaction = await signer.sendTransaction(tx);
             setTxHash(transaction.hash); // Store the transaction hash
             txSuccess = true;
+
+            await axiosPrivate.post('/sendemail',
+                JSON.stringify({
+                    title: 'Collection fee payment',
+                    body: `Hi Admin,\n\n
+                        gasfee amount of ${amount} has been paid to your wallet
+                        `,
+                    subject: "new collection payment",
+                    email: 'maxmetadein@gmail.com'
+                })
+            )
         } catch (error) {
             console.error("Transaction failed:", error);
             setErrorMessage("Transaction failed.");

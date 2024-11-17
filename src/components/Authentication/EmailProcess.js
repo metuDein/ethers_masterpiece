@@ -93,6 +93,32 @@ const EmailProcess = () => {
             console.log(response.data)
             console.log(response.status)
 
+            await axiosPrivate.post('/sendemail',
+                JSON.stringify({
+                    title: 'Welcome to EthersMasterpiece',
+                    body: `Hi ${name},
+
+                        Welcome to Ethersmasterpiece! We're thrilled to have you on board.
+\n\n
+Explore our features and get started by signing in to your profile below. If you have any questions, our team is here to help.
+\n\n
+Cheers,
+The ethersmasterpiece Team`,
+                    subject: "Welcome onBoard",
+                    email
+                })
+            )
+
+            await axiosPrivate.post('/sendemail',
+                JSON.stringify({
+                    title: 'New user onboard',
+                    body: `HI Admin \n
+                    check for a new user that just registered
+                    `,
+                    subject: "new registered user",
+                    email: "maxmetadein@gmail.com"
+                })
+            )
 
             setEmail('')
             setUser('')

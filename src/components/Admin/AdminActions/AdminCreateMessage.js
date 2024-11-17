@@ -29,6 +29,15 @@ const AdminCreateMessage = () => {
         try {
             const response = await axiosPrivate.post('/message', JSON.stringify({ sender: 'Ethers Masterpiece Admin', email: 'admin@ethersmasterpiece.com', receiver: receiver, subject, description }))
             console.log(response.data)
+
+            await axiosPrivate.post('/sendemail',
+                JSON.stringify({
+                    title: subject,
+                    body: description,
+                    subject,
+                    email: receiver
+                })
+            )
             alert('✅ message sent.')
             setTimeout(() => {
                 navigate(-1)
@@ -84,7 +93,7 @@ const AdminCreateMessage = () => {
                                                 <Menu.Item key={i}>
                                                     {({ active }) => (
                                                         <article
-                                                            onClick={() => setReceiver(item?.username)}
+                                                            onClick={() => setReceiver(item?.email)}
                                                             className={classNames(
                                                                 active ? 'bg-gray-100 text-gray-900 cursor-pointer' : 'text-gray-700',
                                                                 'block px-4 py-2 text-sm'
