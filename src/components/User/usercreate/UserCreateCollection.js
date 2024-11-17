@@ -8,7 +8,7 @@ import { FaEthereum } from "react-icons/fa";
 import { GiPadlock } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom"
 import useDataContext from "../../../hooks/useDataContext"
-import axios from "../../../api/axios"
+import axios, { axiosPrivate } from "../../../api/axios"
 import { ethers } from "ethers"
 import Web3 from "web3"
 
