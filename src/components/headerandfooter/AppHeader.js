@@ -426,7 +426,7 @@ const AppHeader = () => {
                             >
                                 <FaBell className='inline mt-1 text-xl' />
                             </button>
-                            <div className={`rounded-xl shadow-2xl absolute ${msgTab ? 'top-[200%]' : 'top-[-7000%]'} bg-white left-[-100%] w-48 p-2 min-h-10`} >
+                            <div className={`rounded-xl shadow-2xl absolute ${msgTab ? 'top-[200%]' : 'top-[-7000%]'} bg-white left-[-100%] w-48 p-2 min-h-10 max-h-[600px]`} >
                                 <ul className='w-full text-black'>
 
                                     {
@@ -449,7 +449,7 @@ const AppHeader = () => {
                                                 className='transition duration-300 hover:bg-gray-300 p-2 pt-1 rounded border-b border-solid'>
                                                 <Link >
                                                     <h2 className='text-[15px] font-medium'>NO NOTIFICATIONS</h2>
-                                                    <p style={{ lineHeight: '10px' }} className='hidden text-[13px] text-gray-500'> no one can help you here get out</p>
+                                                    <p style={{ lineHeight: '10px' }} className='hidden text-[13px] text-gray-500'> no messages</p>
                                                 </Link>
                                             </li>)
                                     }

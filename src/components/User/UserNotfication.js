@@ -60,8 +60,8 @@ const UserNotfication = () => {
                 <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap">
                     <p className="text-balance"> <span className="font-normal">SUBJECT:</span>  {message?.subject} </p>
                 </div>
-                <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap min-h-[400px] max-h-[600px] w-full">
-                    <p className="max-w-3xl text-balance">
+                <div className="border dark:text-white font-bold border-solid border-gray-600 rounded-md p-2 my-1 text-nowrap max-h-[400px] max-w-[400px] w-full">
+                    <p className="mx-auto text-balance w-full max-w-[320px]">
                         {message?.description}
                     </p>
                 </div>
