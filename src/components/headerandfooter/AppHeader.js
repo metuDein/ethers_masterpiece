@@ -427,7 +427,7 @@ const AppHeader = () => {
                                 <FaBell className='inline mt-1 text-xl' />
                             </button>
                             <div className={`rounded-xl shadow-2xl absolute ${msgTab ? 'top-[200%]' : 'top-[-7000%]'} bg-white left-[-100%] w-48 p-2 min-h-10 max-h-[600px] overflow-scroll`} >
-                                <ul className='w-full text-black'>
+                                <ul className='w-full text-black max-h-[600px] overflow-scroll'>
 
                                     {
                                         messages?.length
